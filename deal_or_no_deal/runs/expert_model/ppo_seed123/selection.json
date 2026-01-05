@@ -1,0 +1,5 @@
+{
+  "source": "runs/hints_eval_iter1/summary.txt",
+  "act_accuracy": 1.0,
+  "prompt_path": "configs/llm_prompt.txt"
+}

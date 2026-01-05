@@ -1,0 +1,2 @@
+avg_return,std_return,median_return,agree_rate,end_rate,avg_turns_used,episodes_trained,seed,algo,hint_mode,k,hint_provider,expert_ckpt,failure_ratio
+5.82,8.189481058040247,0.0,0.2775,0.7275,1.059,2000,412,reinforce,expert,1,expert,runs/expert_seed123_turns10/expert_best.pt,0.0

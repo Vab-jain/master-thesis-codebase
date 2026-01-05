@@ -1,0 +1,12 @@
+{
+  "episode": 2000,
+  "rolling_mean_reward": 6.8,
+  "rolling_mean_loss": 0.008018308799655642,
+  "threshold_episodes": {
+    "2": 2,
+    "4": 4,
+    "6": 247,
+    "8": null,
+    "10": null
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "avg_return": 4.43,
+  "std_return": 7.05160265471616,
+  "median_return": 0.0,
+  "agree_rate": 0.0,
+  "end_rate": 0.693,
+  "avg_turns_used": 1.057,
+  "episodes_trained": 2000,
+  "seed": 42,
+  "algo": "reinforce",
+  "hint_mode": "llm",
+  "k": 1,
+  "hint_provider": "local_hf",
+  "failure_ratio": 0.0
+}

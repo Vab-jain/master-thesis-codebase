@@ -1,0 +1,2 @@
+avg_return,std_return,median_return,agree_rate,end_rate,avg_turns_used,episodes_trained,seed,algo,hint_mode,k,hint_provider,expert_ckpt,failure_ratio
+4.61262,6.8639997549242375,0.0,0.0,0.1005,1.0,2000,412,ppo,random,1,random,,0.0

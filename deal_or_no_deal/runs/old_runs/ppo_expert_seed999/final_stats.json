@@ -1,0 +1,16 @@
+{
+  "avg_return": 2.1416399999999998,
+  "std_return": 5.0909466418732,
+  "median_return": 0.0,
+  "agree_rate": 0.0,
+  "end_rate": 0.06,
+  "avg_turns_used": 1.0,
+  "episodes_trained": 250,
+  "seed": 999,
+  "algo": "ppo",
+  "hint_mode": "expert",
+  "k": 1,
+  "hint_provider": "expert",
+  "expert_ckpt": "runs/expert_seed123_turns10/expert_best.pt",
+  "failure_ratio": 0.0
+}

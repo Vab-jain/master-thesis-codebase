@@ -1,0 +1,6 @@
+{
+  "source": "none",
+  "prompt_path": "configs/llm_prompt.txt",
+  "hint_provider": "expert",
+  "expert_ckpt": "runs/expert_seed123_turns10/expert_best.pt"
+}
