@@ -67,7 +67,8 @@ conda-meta/
 # Experiment Results (large directories - uncomment if you want to ignore all results)
 # runs/
 # experiments_results/
-# RL_Training_Results_*/
+RL_Training_Results_*/
+GT_dataset/
 # storage/
 
 # Logs and Temporary Files
@@ -94,6 +95,22 @@ logs/
 # *.svg
 # figures/
 # plots/
+
+# LaTeX/TeX files
+*.tex
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+*.blg
+*.bcf
+*.run.xml
 
 # OS Files
 Thumbs.db
