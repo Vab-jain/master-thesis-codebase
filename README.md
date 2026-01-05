@@ -185,9 +185,11 @@ Master's Thesis Research (In fullfilment of the MS Data Science and AI Program)
 
 University of Saarland (UdS)
 
+Contact: vaja00001@uni-saarland.de (or create an issue on this repo)
+
 ---
 
 For detailed documentation on each project, please refer to the README files in the respective project directories.
 
-Contact: vaja00001@uni-saarland.de (or create an issue on this repo)
+
 
