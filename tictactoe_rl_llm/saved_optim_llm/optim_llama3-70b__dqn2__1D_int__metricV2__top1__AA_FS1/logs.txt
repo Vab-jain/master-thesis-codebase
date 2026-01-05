@@ -1,0 +1,108 @@
+Experiment Details:
+-------------------
+llm_model_id : llama3-70b-8192
+GT_dataset : GT_database/GT_dqn2_1D_int_top1_AA.txt
+llm_save_path : saved_optim_llm/optim_llama3-70b__dqn2__1D_int__metricV2__top1__AA_FS1/optim_llm.pkl
+
+LLM Accuracy (before optimization): 50.38
+Optimized LLM Accuracy (after optimization): 42.31
+
+-------------------
+
+Prompt Tuning History:
+-------------------
+
+
+
+
+[34m[2025-03-22T15:16:28.739914][0m
+
+[31mSystem message:[0m
+
+Your input fields are:
+1. `context` (str): task description
+2. `current_state` (str): current state represented as an array of lenght 9, starting from 0 to 8.
+3. `available_actions` (str): list of empty cells avaiable to play
+
+Your output fields are:
+1. `reasoning` (str)
+2. `answer` (int): an integer describing next action given current state
+
+All interactions will be structured in the following way, with the appropriate values filled in.
+
+[[ ## context ## ]]
+{context}
+
+[[ ## current_state ## ]]
+{current_state}
+
+[[ ## available_actions ## ]]
+{available_actions}
+
+[[ ## reasoning ## ]]
+{reasoning}
+
+[[ ## answer ## ]]
+{answer}        # note: the value you produce must be a single int value
+
+[[ ## completed ## ]]
+
+In adhering to this structure, your objective is: 
+        Given the fields `context`, `current_state`, `available_actions`, produce the fields `answer`.
+
+
+[31mUser message:[0m
+
+[[ ## context ## ]]
+["You are a bot playing a game of tic-tac-toe as a Cross (X). Your task is to play the next move and specify the grid cell index where you would place your turn. '0' indicates an empty cell, '1' indicates a cross, and '-1' indicates a circle."]
+
+[[ ## current_state ## ]]
+-1 0 -1 1 1 0 0 -1 0 
+
+[[ ## available_actions ## ]]
+ 1 5 6 8
+
+Respond with the corresponding output fields, starting with the field `[[ ## reasoning ## ]]`, then `[[ ## answer ## ]]` (must be formatted as a valid Python int), and then ending with the marker for `[[ ## completed ## ]]`.
+
+
+[31mAssistant message:[0m
+
+[[ ## reasoning ## ]]
+I will place my Cross (X) in position 5, as it is a strategic move that blocks the opponent's potential three-in-a-row and sets me up for a potential win.
+
+[[ ## answer ## ]]
+5
+
+[[ ## completed ## ]]
+
+
+[31mUser message:[0m
+
+[[ ## context ## ]]
+["You are a bot playing a game of tic-tac-toe as a Cross (X). Your task is to play the next move and specify the grid cell index where you would place your turn. '0' indicates an empty cell, '1' indicates a cross, and '-1' indicates a circle."]
+
+[[ ## current_state ## ]]
+0 0 -1 -1 1 0 0 0 0 
+
+[[ ## available_actions ## ]]
+ 0 1 5 6 7 8
+
+Respond with the corresponding output fields, starting with the field `[[ ## reasoning ## ]]`, then `[[ ## answer ## ]]` (must be formatted as a valid Python int), and then ending with the marker for `[[ ## completed ## ]]`.
+
+
+[31mResponse:[0m
+
+[32m[[ ## reasoning ## ]]
+I will place my Cross (X) in position 0, as it is a corner spot and gives me the most flexibility for my next move.
+
+[[ ## answer ## ]]
+0
+
+[[ ## completed ## ]][0m
+
+
+
+
+
+-------------------
+

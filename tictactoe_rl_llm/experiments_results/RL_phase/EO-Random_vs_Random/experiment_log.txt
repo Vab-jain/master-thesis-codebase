@@ -1,0 +1,16 @@
+### Experiment-Random_vs_Random ###
+
+Config
+Seed: 0
+Training Episodes: 0
+LLM Use Probability (Training): 0
+Agent First Strategy: random
+Training Time: 0.00 seconds
+
+Evaluation
+Total Games: 1000
+LLM Use Probability (Evaluation): 0
+Win: 337 (33.70%)
+Loss: 319 (31.90%)
+Draw: 344 (34.40%)
+Evaluation Time: 0.58 seconds

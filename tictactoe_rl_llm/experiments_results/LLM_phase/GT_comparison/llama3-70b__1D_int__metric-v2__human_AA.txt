@@ -1,0 +1,28 @@
+Experiment Details:
+-------------------
+llm_model_id : llama3-70b-8192
+GT_dataset : GT_database/GT_human.txt
+LLM Accuracy: 0.0
+-------------------
+
+Experiment Details:
+-------------------
+llm_model_id : llama3-70b-8192
+GT_dataset : GT_database/GT_human.txt
+LLM Accuracy: 0.0
+-------------------
+
+Experiment Details:
+-------------------
+llm_model_id : ollama_chat/llama2:13b
+GT_dataset : GT_database/GT_human.txt
+LLM Accuracy: 0.0
+-------------------
+
+Experiment Details:
+-------------------
+llm_model_id : ollama_chat/llama3.2:3b
+GT_dataset : GT_database/GT_human.txt
+LLM Accuracy: 15.0
+-------------------
+

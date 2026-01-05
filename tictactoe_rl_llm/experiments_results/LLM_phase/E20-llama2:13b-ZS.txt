@@ -1,0 +1,13 @@
+Experiment Details:
+-------------------
+Experiment Name: E20-llama2:13b-ZS
+Seed: 42
+LLM: ollama_chat/llama2:13b
+LLM Agent Plays: Random
+Number of Games: 100
+-------------------
+
+LLM Agent Accuracy:
+Win: 35, Loss: 42, Draw: 21, Invalid: 2, Invalid (%): 0.5797101449275363, Total Suggestions: 345
+#####################
+

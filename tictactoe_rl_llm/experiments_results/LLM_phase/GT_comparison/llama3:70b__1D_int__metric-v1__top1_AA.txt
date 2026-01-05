@@ -1,0 +1,14 @@
+Experiment Details:
+-------------------
+llm_model_id : llama3-70b-8192
+GT_dataset : GT_database/GT_dqn2_1D_int_top1_AA.txt
+LLM Accuracy: 42.0
+-------------------
+
+Experiment Details:
+-------------------
+llm_model_id : llama3-70b-8192
+GT_dataset : GT_database/GT_oracle_AA.txt
+LLM Accuracy: 39.0
+-------------------
+

@@ -1,0 +1,53 @@
+
+Experiment Details:
+-------------------
+Experiment Name: E-TD-llama3.2:3b-CoT-noTD-1D-int
+Seed: 42
+LLM: ollama_chat/llama3.2:3b
+LLM Agent Plays: Random
+Number of Games: 10
+-------------------
+
+LLM Agent Accuracy:
+Win: 0, Loss: 0, Draw: 0, Invalid: 10, Invalid (%): 45.45454545454545, Total Suggestions: 22
+#####################
+
+Experiment Details:
+-------------------
+Experiment Name: E-TD-llama3.2:3b-CoT-noTD-2d-int
+Seed: 42
+LLM: ollama_chat/llama3.2:3b
+LLM Agent Plays: Random
+Number of Games: 10
+-------------------
+
+LLM Agent Accuracy:
+Win: 0, Loss: 1, Draw: 0, Invalid: 9, Invalid (%): 37.5, Total Suggestions: 24
+#####################
+
+Experiment Details:
+-------------------
+Experiment Name: E-TD-llama3.2:3b-CoT-noTD-2d-XO
+Seed: 42
+LLM: ollama_chat/llama3.2:3b
+LLM Agent Plays: Random
+Number of Games: 10
+-------------------
+
+LLM Agent Accuracy:
+Win: 0, Loss: 2, Draw: 2, Invalid: 6, Invalid (%): 18.75, Total Suggestions: 32
+#####################
+
+Experiment Details:
+-------------------
+Experiment Name: E-TD-llama3.2:3b-CoT-noTD-1d-XO
+Seed: 42
+LLM: ollama_chat/llama3.2:3b
+LLM Agent Plays: Random
+Number of Games: 10
+-------------------
+
+LLM Agent Accuracy:
+Win: 1, Loss: 1, Draw: 0, Invalid: 8, Invalid (%): 32.0, Total Suggestions: 25
+#####################
+

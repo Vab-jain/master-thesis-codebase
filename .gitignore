@@ -103,10 +103,22 @@ Thumbs.db
 Icon
 ._*
 
-# Environment Variables
+# Environment Variables and Secrets
 .env
 .env.local
 .env.*.local
+*.env
+*.secret
+*_secret.py
+*_secrets.py
+
+# API Keys and Tokens (common patterns)
+*api*key*
+*API*KEY*
+*token*
+*TOKEN*
+*gsk_*
+*sk-*
 
 # Coverage Reports
 htmlcov/
@@ -129,7 +141,6 @@ dmypy.json
 .pyre/
 
 # TensorBoard
-runs/
 tensorboard/
 *.tfevents.*
 

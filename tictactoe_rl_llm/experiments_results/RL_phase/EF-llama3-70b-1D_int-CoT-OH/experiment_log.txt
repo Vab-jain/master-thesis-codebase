@@ -1,0 +1,43 @@
+### EF-llama3-70b-1D_int-CoT-OH ###
+
+Config
+-------------------
+Seed: 42
+Agent First Strategy: random
+Agent Policy: dqn
+Random Suggestion: False
+
+Board Representation: 1D
+Cross Representation: 1/-1
+DSPY Signature: v2
+Prompting Method: CoT
+Task Description: td_og
+LLM Config
+-------------------
+Save LLM Cache: True
+LLM Load Path: None
+LLM Model ID: llama3-70b-8192
+
+Learning Config
+-------------------
+Batch Size: 32
+Learning Rate: 0.0001
+Gamma: 0.99
+Target Update Steps: 30
+
+Training
+-------------------
+Training Episodes: 1000
+LLM Use Probability (Training): 1
+Training Time: 7.27 seconds
+
+Evaluation
+-------------------
+Total Games: 100
+LLM Use Probability (Evaluation): 1
+Win: 81 (81.00%)
+Loss: 2 (2.00%)
+Draw: 17 (17.00%)
+Average Return: 80.98
+Evaluation Time: 0.15 seconds
+

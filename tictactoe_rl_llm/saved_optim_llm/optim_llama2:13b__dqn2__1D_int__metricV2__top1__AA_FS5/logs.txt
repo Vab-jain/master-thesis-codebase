@@ -1,0 +1,191 @@
+Experiment Details:
+-------------------
+llm_model_id : ollama_chat/llama2:13b
+GT_dataset : GT_database/GT_dqn2_1D_int_top1_AA.txt
+llm_save_path : saved_optim_llm/optim_llama2:13b__dqn2__1D_int__metricV2__top1__AA_FS5/optim_llm.pkl
+
+LLM Accuracy (before optimization): 12.31
+Optimized LLM Accuracy (after optimization): 15.0
+
+-------------------
+
+Prompt Tuning History:
+-------------------
+
+
+
+
+[34m[2025-03-22T14:56:36.141229][0m
+
+[31mSystem message:[0m
+
+Your input fields are:
+1. `context` (str): task description
+2. `current_state` (str): current state represented as an array of lenght 9, starting from 0 to 8.
+3. `available_actions` (str): list of empty cells avaiable to play
+
+Your output fields are:
+1. `reasoning` (str)
+2. `answer` (int): an integer describing next action given current state
+
+All interactions will be structured in the following way, with the appropriate values filled in.
+
+Inputs will have the following structure:
+
+[[ ## context ## ]]
+{context}
+
+[[ ## current_state ## ]]
+{current_state}
+
+[[ ## available_actions ## ]]
+{available_actions}
+
+Outputs will be a JSON object with the following fields.
+
+{
+  "reasoning": "{reasoning}",
+  "answer": "{answer}        # note: the value you produce must be a single int value"
+}
+
+In adhering to this structure, your objective is: 
+        Given the fields `context`, `current_state`, `available_actions`, produce the fields `answer`.
+
+
+[31mUser message:[0m
+
+[[ ## context ## ]]
+["You are a bot playing a game of tic-tac-toe as a Cross (X). Your task is to play the next move and specify the grid cell index where you would place your turn. '0' indicates an empty cell, '1' indicates a cross, and '-1' indicates a circle."]
+
+[[ ## current_state ## ]]
+-1 0 -1 0 1 0 0 0 0 
+
+[[ ## available_actions ## ]]
+ 1 3 5 6 7 8
+
+Respond with a JSON object in the following order of fields: `reasoning`, then `answer` (must be formatted as a valid Python int).
+
+
+[31mAssistant message:[0m
+
+{
+  "reasoning": "Not supplied for this particular example.",
+  "answer": 3
+}
+
+
+[31mUser message:[0m
+
+[[ ## context ## ]]
+["You are a bot playing a game of tic-tac-toe as a Cross (X). Your task is to play the next move and specify the grid cell index where you would place your turn. '0' indicates an empty cell, '1' indicates a cross, and '-1' indicates a circle."]
+
+[[ ## current_state ## ]]
+0 0 0 0 1 -1 0 0 0 
+
+[[ ## available_actions ## ]]
+ 0 1 2 3 6 7 8
+
+Respond with a JSON object in the following order of fields: `reasoning`, then `answer` (must be formatted as a valid Python int).
+
+
+[31mAssistant message:[0m
+
+{
+  "reasoning": "Not supplied for this particular example.",
+  "answer": 2
+}
+
+
+[31mUser message:[0m
+
+[[ ## context ## ]]
+["You are a bot playing a game of tic-tac-toe as a Cross (X). Your task is to play the next move and specify the grid cell index where you would place your turn. '0' indicates an empty cell, '1' indicates a cross, and '-1' indicates a circle."]
+
+[[ ## current_state ## ]]
+0 -1 0 0 1 0 1 0 -1 
+
+[[ ## available_actions ## ]]
+ 0 2 3 5 7
+
+Respond with a JSON object in the following order of fields: `reasoning`, then `answer` (must be formatted as a valid Python int).
+
+
+[31mAssistant message:[0m
+
+{
+  "reasoning": "Not supplied for this particular example.",
+  "answer": 2
+}
+
+
+[31mUser message:[0m
+
+[[ ## context ## ]]
+["You are a bot playing a game of tic-tac-toe as a Cross (X). Your task is to play the next move and specify the grid cell index where you would place your turn. '0' indicates an empty cell, '1' indicates a cross, and '-1' indicates a circle."]
+
+[[ ## current_state ## ]]
+0 0 0 0 1 0 0 -1 0 
+
+[[ ## available_actions ## ]]
+ 0 1 2 3 5 6 8
+
+Respond with a JSON object in the following order of fields: `reasoning`, then `answer` (must be formatted as a valid Python int).
+
+
+[31mAssistant message:[0m
+
+{
+  "reasoning": "Not supplied for this particular example.",
+  "answer": 2
+}
+
+
+[31mUser message:[0m
+
+[[ ## context ## ]]
+["You are a bot playing a game of tic-tac-toe as a Cross (X). Your task is to play the next move and specify the grid cell index where you would place your turn. '0' indicates an empty cell, '1' indicates a cross, and '-1' indicates a circle."]
+
+[[ ## current_state ## ]]
+0 0 0 0 1 -1 0 0 0 
+
+[[ ## available_actions ## ]]
+ 0 1 2 3 6 7 8
+
+Respond with a JSON object in the following order of fields: `reasoning`, then `answer` (must be formatted as a valid Python int).
+
+
+[31mAssistant message:[0m
+
+{
+  "reasoning": "Not supplied for this particular example.",
+  "answer": 2
+}
+
+
+[31mUser message:[0m
+
+[[ ## context ## ]]
+["You are a bot playing a game of tic-tac-toe as a Cross (X). Your task is to play the next move and specify the grid cell index where you would place your turn. '0' indicates an empty cell, '1' indicates a cross, and '-1' indicates a circle."]
+
+[[ ## current_state ## ]]
+0 0 0 0 0 0 0 0 0 
+
+[[ ## available_actions ## ]]
+ 0 1 2 3 4 5 6 7 8
+
+Respond with a JSON object in the following order of fields: `reasoning`, then `answer` (must be formatted as a valid Python int).
+
+
+[31mResponse:[0m
+
+[32m{
+  "reasoning": "Not supplied for this particular example.",
+  "answer": 1
+}[0m
+
+
+
+
+
+-------------------
+

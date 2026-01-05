@@ -1,0 +1,12 @@
+Experiment Details:
+-------------------
+Experiment Name: E-AA-llama2:13b-CoT-v2
+LLM: ollama_chat/llama2:13b
+LLM Agent Plays: Random
+Number of Games: 10
+-------------------
+
+LLM Agent Accuracy:
+Win: 3, Loss: 3, Draw: 3, Invalid: 1, Invalid (%): 3.0303030303030303, Total Suggestions: 33
+#####################
+

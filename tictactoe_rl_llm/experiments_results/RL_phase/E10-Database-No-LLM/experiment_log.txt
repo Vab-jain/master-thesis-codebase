@@ -1,0 +1,16 @@
+### E10-Database-No-LLM ###
+
+Config
+Seed: 0
+Training Episodes: 1000
+LLM Use Probability (Training): 0
+Agent First Strategy: random
+Training Time: 5.57 seconds
+
+Evaluation
+Total Games: 100
+LLM Use Probability (Evaluation): 0
+Win: 73 (73.00%)
+Loss: 21 (21.00%)
+Draw: 6 (6.00%)
+Evaluation Time: 0.09 seconds

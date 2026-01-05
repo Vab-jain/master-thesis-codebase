@@ -1,0 +1,13 @@
+Experiment Details:
+-------------------
+Experiment Name: E20-llama3:70b-CoT
+Seed: 42
+LLM: llama3-70b-8192
+LLM Agent Plays: Random
+Number of Games: 100
+-------------------
+
+LLM Agent Accuracy:
+Win: 45, Loss: 21, Draw: 25, Invalid: 9, Invalid (%): 2.5787965616045847, Total Suggestions: 349
+#####################
+

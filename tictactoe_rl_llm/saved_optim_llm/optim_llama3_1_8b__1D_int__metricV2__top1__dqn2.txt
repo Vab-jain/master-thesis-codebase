@@ -1,0 +1,8 @@
+Experiment Details:
+-------------------
+llm_model_id : ollama_chat/llama3.1:latest
+GT_dataset : GT_database/GT_dqn2_1D_int_single_action.txt
+llm_save_path : saved_optim_llm/optim_llama3_1_8b__1D_int__metricV2__top1__dqn2.pkl
+
+LLM Accuracy (before optimization): 0.0
+Optimized LLM Accuracy (after optimization): 0.0

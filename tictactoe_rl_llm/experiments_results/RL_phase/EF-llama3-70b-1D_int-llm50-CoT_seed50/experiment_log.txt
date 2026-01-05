@@ -1,0 +1,46 @@
+### EF-llama3-70b-1D_int-llm50-CoT_seed50 ###
+
+Config
+-------------------
+Seed: 50
+Agent First Strategy: random
+Agent Policy: dqn
+Random Suggestion: False
+
+Board Representation: 1D
+Cross Representation: 1/-1
+DSPY Signature: v2
+Prompting Method: CoT
+Task Description: td_og
+LLM Config
+-------------------
+Save LLM Cache: True
+LLM Load Path: None
+LLM Model ID: llama3-70b-8192
+Use GROQ: True
+LLM Cache Path: LLM_database/E20-GROQ-llama3-70b-ZS.json
+Suggestion One Hot: False
+
+Learning Config
+-------------------
+Batch Size: 32
+Learning Rate: 0.0001
+Gamma: 0.99
+Target Update Steps: 30
+
+Training
+-------------------
+Training Episodes: 1000
+LLM Use Probability (Training): 0.5
+Training Time: 6636.69 seconds
+
+Evaluation
+-------------------
+Total Games: 100
+LLM Use Probability (Evaluation): 1
+Win: 68 (68.00%)
+Loss: 22 (22.00%)
+Draw: 10 (10.00%)
+Average Return: 67.78
+Evaluation Time: 1177.97 seconds
+

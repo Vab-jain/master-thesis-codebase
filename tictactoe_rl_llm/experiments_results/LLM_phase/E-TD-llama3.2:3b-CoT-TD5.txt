@@ -1,0 +1,13 @@
+Experiment Details:
+-------------------
+Experiment Name: E-TD-llama3.2:3b-CoT-TD5
+Seed: 42
+LLM: ollama_chat/llama3.2:3b
+LLM Agent Plays: Random
+Number of Games: 10
+-------------------
+
+LLM Agent Accuracy:
+Win: 1, Loss: 3, Draw: 6, Invalid: 0, Invalid (%): 0.0, Total Suggestions: 38
+#####################
+

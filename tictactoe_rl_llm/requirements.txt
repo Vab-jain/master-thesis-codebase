@@ -1,0 +1,7 @@
+dspy==2.6.8
+env==0.1.0
+matplotlib==3.8.4
+numpy==1.24.3
+pandas==2.2.3
+torch==2.4.1
+tqdm==4.66.4

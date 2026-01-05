@@ -1,0 +1,16 @@
+### Experiment-DQN-LLM-Comparison_LLM_no_eval ###
+
+Config
+Seed: 14
+Training Episodes: 1000
+LLM Use Probability (Training): 1
+Agent First Strategy: random
+Training Time: 20.00 seconds
+
+Evaluation
+Total Games: 100
+LLM Use Probability (Evaluation): 0
+Win: 49 (49.00%)
+Loss: 29 (29.00%)
+Draw: 22 (22.00%)
+Evaluation Time: 0.15 seconds

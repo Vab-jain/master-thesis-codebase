@@ -1,0 +1,16 @@
+### Experiment-2_metric_v2_3b_1D_LLM ###
+
+Config
+Seed: 41
+Training Episodes: 1000
+LLM Use Probability (Training): 1
+Agent First Strategy: random
+Training Time: 1854.04 seconds
+
+Evaluation
+Total Games: 100
+LLM Use Probability (Evaluation): 0
+Win: 64 (64.00%)
+Loss: 16 (16.00%)
+Draw: 20 (20.00%)
+Evaluation Time: 184.64 seconds

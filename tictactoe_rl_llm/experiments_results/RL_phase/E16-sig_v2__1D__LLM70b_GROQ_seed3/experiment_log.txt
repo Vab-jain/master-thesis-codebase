@@ -1,0 +1,40 @@
+### E16-sig_v2__1D__LLM70b_GROQ_seed3 ###
+
+Config
+-------------------
+Seed: 3
+Agent First Strategy: random
+Agent Policy: dqn
+Random Suggestion: False
+
+Board Representation: 1D
+Cross Representation: 1/-1
+DSPY Signature: v2
+LLM Config
+-------------------
+Save LLM Cache: True
+LLM Load Path: None
+LLM Model ID: llama3-70b-8192
+
+Learning Config
+-------------------
+Batch Size: 32
+Learning Rate: 0.0001
+Gamma: 0.99
+Target Update Steps: 30
+
+Training
+-------------------
+Training Episodes: 1000
+LLM Use Probability (Training): 1
+Training Time: 6058.32 seconds
+
+Evaluation
+-------------------
+Total Games: 100
+LLM Use Probability (Evaluation): 1
+Win: 69 (69.00%)
+Loss: 19 (19.00%)
+Draw: 12 (12.00%)
+Evaluation Time: 193.98 seconds
+

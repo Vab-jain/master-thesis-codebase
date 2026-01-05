@@ -1,0 +1,43 @@
+### EA-DQN50 ###
+
+Config
+-------------------
+Seed: 50
+Agent First Strategy: random
+Agent Policy: dqn
+Random Suggestion: False
+
+Board Representation: 1D
+Cross Representation: 1/-1
+DSPY Signature: v2
+Prompting Method: CoT
+Task Description: td_og
+LLM Config
+-------------------
+Save LLM Cache: True
+LLM Load Path: None
+LLM Model ID: ollama_chat/llama3.2:3b
+
+Learning Config
+-------------------
+Batch Size: 32
+Learning Rate: 0.0001
+Gamma: 0.99
+Target Update Steps: 30
+
+Training
+-------------------
+Training Episodes: 1000
+LLM Use Probability (Training): 0
+Training Time: 7.17 seconds
+
+Evaluation
+-------------------
+Total Games: 100
+LLM Use Probability (Evaluation): 0
+Win: 77 (77.00%)
+Loss: 14 (14.00%)
+Draw: 9 (9.00%)
+Average Return: 76.86
+Evaluation Time: 0.16 seconds
+

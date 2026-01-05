@@ -1,0 +1,14 @@
+Experiment Details:
+-------------------
+llm_model_id : ollama_chat/llama3.2:3b
+GT_dataset : GT_database/GT_dqn2_1D_int_top1_AA.txt
+LLM Accuracy: 12.0
+-------------------
+
+Experiment Details:
+-------------------
+llm_model_id : ollama_chat/llama3.2:3b
+GT_dataset : GT_database/GT_oracle_AA.txt
+LLM Accuracy: 9.0
+-------------------
+
