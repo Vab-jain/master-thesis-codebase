@@ -1,0 +1,13 @@
+gymnasium>=0.29.1
+numpy>=1.23
+torch>=2.2
+tqdm>=4.65
+matplotlib>=3.7
+seaborn>=0.13
+pyyaml>=6.0
+pytest>=7.4
+
+# plotting/analysis
+pandas>=2.0
+
+
