@@ -1,0 +1,24 @@
+# random files
+*__pycache__
+*egg-info
+.vscode
+
+# API Keys
+.env
+
+# Sandbox and Test files
+test_*
+sand_*
+
+# old or temporary log/results folders
+storage
+hint_comparison_*
+stable_baselines_experiments
+
+# Results
+4_RL_agent_training/RL_Training_Results*
+
+# other files
+run.sh
+
+

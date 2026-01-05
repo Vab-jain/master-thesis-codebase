@@ -1,0 +1,91 @@
+{
+  "accuracy": 0.2,
+  "correct_predictions": 2,
+  "total_predictions": 10,
+  "testset_size": 10,
+  "hint_type": "action",
+  "encoding_type": "natural",
+  "model_path": null,
+  "dataset_path": "../1_GT_collection/GT_dataset/dataset_9env_5seed_5episodes_v2_0623_2116",
+  "predictions": [
+    {
+      "example_id": 0,
+      "observation": "Agent is facing north. There is a yellow ball at position (16,2). There is a red box at position (19...",
+      "target": "5",
+      "predicted": 2,
+      "correct": false
+    },
+    {
+      "example_id": 1,
+      "observation": "Agent is facing east. There is a green ball at position (1,3). There is a green ball at position (2,...",
+      "target": "2",
+      "predicted": 2,
+      "correct": true
+    },
+    {
+      "example_id": 2,
+      "observation": "Agent is facing east. There is a red ball at position (8,1). There is a green door (open) at positio...",
+      "target": "1",
+      "predicted": 2,
+      "correct": false
+    },
+    {
+      "example_id": 3,
+      "observation": "Agent is facing east. There is a red ball at position (4,1). There is a purple box at position (5,2)...",
+      "target": "3",
+      "predicted": 2,
+      "correct": false
+    },
+    {
+      "example_id": 4,
+      "observation": "Agent is facing east. There is a grey box at position (17,1). There is a grey key at position (5,2)....",
+      "target": "2",
+      "predicted": 2,
+      "correct": true
+    },
+    {
+      "example_id": 5,
+      "observation": "Agent is facing north. There is a purple key at position (9,1). There is a purple ball at position (...",
+      "target": "1",
+      "predicted": 2,
+      "correct": false
+    },
+    {
+      "example_id": 6,
+      "observation": "Agent is facing west. There is a grey box at position (17,1). There is a grey key at position (5,2)....",
+      "target": "0",
+      "predicted": 2,
+      "correct": false
+    },
+    {
+      "example_id": 7,
+      "observation": "Agent is facing east. There is a grey box at position (4,1). There is a grey box at position (11,1)....",
+      "target": "6",
+      "predicted": 2,
+      "correct": false
+    },
+    {
+      "example_id": 8,
+      "observation": "Agent is facing west. There is a red key at position (2,2). There is a yellow ball at position (3,3)...",
+      "target": "5",
+      "predicted": 2,
+      "correct": false
+    },
+    {
+      "example_id": 9,
+      "observation": "Agent is facing north. There is a red ball at position (8,1). There is a green door (open) at positi...",
+      "target": "0",
+      "predicted": 2,
+      "correct": false
+    }
+  ],
+  "evaluation_time_seconds": 7.926784992218018,
+  "timestamp": "2025-07-14T16:11:27.947374",
+  "config": {
+    "dataset_path": "../1_GT_collection/GT_dataset/dataset_9env_5seed_5episodes_v2_0623_2116",
+    "hint_type": "action",
+    "encoding_type": "natural",
+    "model_path": null,
+    "testset_size": 10
+  }
+}

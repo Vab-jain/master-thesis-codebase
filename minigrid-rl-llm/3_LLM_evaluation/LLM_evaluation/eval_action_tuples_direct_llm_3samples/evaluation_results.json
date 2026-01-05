@@ -1,0 +1,42 @@
+{
+  "accuracy": 0.3333333333333333,
+  "correct_predictions": 1,
+  "total_predictions": 3,
+  "testset_size": 3,
+  "hint_type": "action",
+  "encoding_type": "tuples",
+  "model_path": null,
+  "dataset_path": "../1_GT_collection/GT_dataset/dataset_9env_5seed_5episodes_v2_0623_2116",
+  "predictions": [
+    {
+      "example_id": 0,
+      "observation": "Agent at (15, 15) facing west. Objects: [('green' box, (6, 1)), ('green' key, (9, 1)), ('red' ball, ...",
+      "target": "0",
+      "predicted": 2,
+      "correct": false
+    },
+    {
+      "example_id": 1,
+      "observation": "Agent at (2, 6) facing north. Objects: [('purple' key, (1, 2)), ('green' key, (5, 2)), ('yellow' doo...",
+      "target": "1",
+      "predicted": 2,
+      "correct": false
+    },
+    {
+      "example_id": 2,
+      "observation": "Agent at (8, 11) facing east. Objects: [('yellow' key, (1, 1)), ('green' key, (11, 2)), ('purple' do...",
+      "target": "2",
+      "predicted": 2,
+      "correct": true
+    }
+  ],
+  "evaluation_time_seconds": 6.346402168273926,
+  "timestamp": "2025-07-14T15:54:29.773839",
+  "config": {
+    "dataset_path": "../1_GT_collection/GT_dataset/dataset_9env_5seed_5episodes_v2_0623_2116",
+    "hint_type": "action",
+    "encoding_type": "tuples",
+    "model_path": null,
+    "testset_size": 3
+  }
+}

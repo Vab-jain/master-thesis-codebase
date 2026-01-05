@@ -1,0 +1,9 @@
+task_description:
+You are a 2D maze-solving agent with access to a variety of low-level skills such as picking up or dropping objects, navigating to doors/keys/boxes, and opening/closing doors. You are also given the current state of the maze. Your task is to choose the single next subgoal to achieve, given: 1) The overall mission (e.g. “pick up the red key and open the blue door”) 2) A textual encoding of the current environment state, and 3) The previous actions taken by the agent in the current episode. Think step by step about the current state, the agent's position, and previous actions, and output the next subgoal.
+
+current_state (TUPLES):
+Objects: [('red' door, state=closed, (2, 0)), ('grey' door, state=closed, (3, 5))]. Mission: open the door behind you
+
+previous_actions:
+
+

@@ -1,0 +1,54 @@
+{
+  "summary": [
+    {
+      "experiment_name": "eval_action_ascii_direct_llm_10samples",
+      "accuracy": 20.0,
+      "evaluation_time": 8.009852886199951,
+      "config": {
+        "dataset_path": "../1_GT_collection/GT_dataset/dataset_9env_5seed_5episodes_v2_0623_2116",
+        "hint_type": "action",
+        "encoding_type": "ascii",
+        "model_path": null,
+        "testset_size": 10
+      }
+    },
+    {
+      "experiment_name": "eval_action_natural_direct_llm_10samples",
+      "accuracy": 20.0,
+      "evaluation_time": 7.926784992218018,
+      "config": {
+        "dataset_path": "../1_GT_collection/GT_dataset/dataset_9env_5seed_5episodes_v2_0623_2116",
+        "hint_type": "action",
+        "encoding_type": "natural",
+        "model_path": null,
+        "testset_size": 10
+      }
+    },
+    {
+      "experiment_name": "eval_action_tuples_direct_llm_10samples",
+      "accuracy": 20.0,
+      "evaluation_time": 8.468595027923584,
+      "config": {
+        "dataset_path": "../1_GT_collection/GT_dataset/dataset_9env_5seed_5episodes_v2_0623_2116",
+        "hint_type": "action",
+        "encoding_type": "tuples",
+        "model_path": null,
+        "testset_size": 10
+      }
+    },
+    {
+      "experiment_name": "eval_action_relative_direct_llm_10samples",
+      "accuracy": 20.0,
+      "evaluation_time": 15.570868968963623,
+      "config": {
+        "dataset_path": "../1_GT_collection/GT_dataset/dataset_9env_5seed_5episodes_v2_0623_2116",
+        "hint_type": "action",
+        "encoding_type": "relative",
+        "model_path": null,
+        "testset_size": 10
+      }
+    }
+  ],
+  "timestamp": "2025-07-14T16:11:51.990926",
+  "total_evaluations": 4
+}

@@ -1,0 +1,148 @@
+# DSPy Agent Fine-tuning Configuration
+# This file configures the teacher-student fine-tuning pipeline with AI feedback metrics
+
+# Fine-tuning configuration
+fine_tuning:
+  # Path to the dataset directory (will be overridden by command line)
+  dataset_path: "1_GT_collection/GT_dataset/dataset_9env_5seed_5episodes_v2_0623_2116"
+  
+  # Fine-tuning approach: teacher_student (only supported approach)
+  approach: "teacher_student"
+  
+  # Global output directory for all models
+  output_dir: "saved_llm_models"
+  
+  # Default model configurations
+  defaults:
+    teacher_model: "llama-3.3-70b-versatile"
+    student_model: "llama3.1:70b"
+    teacher_groq: true
+    student_groq: false
+    assessor_model: "deepseek-r1-distill-llama-70b"
+    assessor_groq: true
+    max_bootstrapped_demos: 1
+    minibatch_size: 40
+    samples_per_category: 10
+  
+  # List of model configurations to fine-tune
+  models:
+    # Primary action predictors with different encodings
+    - name: "teacher_student_action_ascii_ai_feedback"
+      hint_type: "action"
+      encoding_type: "ascii"
+      teacher_model: "llama-3.3-70b-versatile"
+      student_model: "llama3.1:70b"
+      teacher_groq: true
+      student_groq: false
+      assessor_model: "deepseek-r1-distill-llama-70b"
+      assessor_groq: true
+      max_bootstrapped_demos: 1
+      minibatch_size: 40
+      samples_per_category: 15
+    
+    - name: "teacher_student_action_natural_ai_feedback"
+      hint_type: "action"
+      encoding_type: "natural"
+      teacher_model: "llama-3.3-70b-versatile"
+      student_model: "llama3.1:70b"
+      teacher_groq: true
+      student_groq: false
+      assessor_model: "deepseek-r1-distill-llama-70b"
+      assessor_groq: true
+      max_bootstrapped_demos: 1
+      minibatch_size: 40
+      samples_per_category: 15
+    
+    - name: "teacher_student_action_tuples_ai_feedback"
+      hint_type: "action"
+      encoding_type: "tuples"
+      teacher_model: "llama-3.3-70b-versatile"
+      student_model: "llama3.1:70b"
+      teacher_groq: true
+      student_groq: false
+      assessor_model: "deepseek-r1-distill-llama-70b"
+      assessor_groq: true
+      max_bootstrapped_demos: 1
+      minibatch_size: 40
+      samples_per_category: 15
+    
+    - name: "teacher_student_action_relative_ai_feedback"
+      hint_type: "action"
+      encoding_type: "relative"
+      teacher_model: "llama-3.3-70b-versatile"
+      student_model: "llama3.1:70b"
+      teacher_groq: true
+      student_groq: false
+      assessor_model: "deepseek-r1-distill-llama-70b"
+      assessor_groq: true
+      max_bootstrapped_demos: 1
+      minibatch_size: 40
+      samples_per_category: 15
+    
+    # Alternative model combinations for experimentation
+    - name: "teacher_student_action_ascii_smaller_models"
+      hint_type: "action"
+      encoding_type: "ascii"
+      teacher_model: "llama-3.1-70b-versatile"
+      student_model: "llama3.2:11b"
+      teacher_groq: true
+      student_groq: false
+      assessor_model: "deepseek-r1-distill-llama-70b"
+      assessor_groq: true
+      max_bootstrapped_demos: 2
+      minibatch_size: 20
+      samples_per_category: 10
+    
+    # Large scale training configuration
+    - name: "teacher_student_action_ascii_large_scale"
+      hint_type: "action"
+      encoding_type: "ascii"
+      teacher_model: "llama-3.3-70b-versatile"
+      student_model: "llama3.1:70b"
+      teacher_groq: true
+      student_groq: false
+      assessor_model: "deepseek-r1-distill-llama-70b"
+      assessor_groq: true
+      max_bootstrapped_demos: 1
+      minibatch_size: 60
+      samples_per_category: 25
+    
+    # # Experimental: Subgoal prediction (if needed)
+    # - name: "teacher_student_subgoal_ascii_experimental"
+    #   hint_type: "subgoal"
+    #   encoding_type: "ascii"
+    #   teacher_model: "llama-3.3-70b-versatile"
+    #   student_model: "llama3.1:70b"
+    #   teacher_groq: true
+    #   student_groq: false
+    #   assessor_model: "deepseek-r1-distill-llama-70b"
+    #   assessor_groq: true
+    #   max_bootstrapped_demos: 1
+    #   minibatch_size: 40
+    #   samples_per_category: 10
+
+# Additional configuration for specific experiments
+experiments:
+  # Quick test configuration for development
+  quick_test:
+    samples_per_category: 5
+    max_bootstrapped_demos: 1
+    minibatch_size: 10
+  
+  # Full scale configuration for production
+  production:
+    samples_per_category: 30
+    max_bootstrapped_demos: 2
+    minibatch_size: 80
+  
+  # Model comparison experiment
+  model_comparison:
+    teacher_models: 
+      - "llama-3.3-70b-versatile"
+      - "llama-3.1-70b-versatile" 
+    student_models:
+      - "llama3.1:70b"
+      - "llama3.2:11b"
+    assessor_models:
+      - "deepseek-r1-distill-llama-70b"
+      - "llama-3.3-70b-versatile" 

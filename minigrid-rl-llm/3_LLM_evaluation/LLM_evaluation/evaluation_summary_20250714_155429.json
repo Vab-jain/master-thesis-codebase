@@ -1,0 +1,30 @@
+{
+  "summary": [
+    {
+      "experiment_name": "eval_action_ascii_direct_llm_3samples",
+      "accuracy": 33.33333333333333,
+      "evaluation_time": 6.768432855606079,
+      "config": {
+        "dataset_path": "../1_GT_collection/GT_dataset/dataset_9env_5seed_5episodes_v2_0623_2116",
+        "hint_type": "action",
+        "encoding_type": "ascii",
+        "model_path": null,
+        "testset_size": 3
+      }
+    },
+    {
+      "experiment_name": "eval_action_tuples_direct_llm_3samples",
+      "accuracy": 33.33333333333333,
+      "evaluation_time": 6.346402168273926,
+      "config": {
+        "dataset_path": "../1_GT_collection/GT_dataset/dataset_9env_5seed_5episodes_v2_0623_2116",
+        "hint_type": "action",
+        "encoding_type": "tuples",
+        "model_path": null,
+        "testset_size": 3
+      }
+    }
+  ],
+  "timestamp": "2025-07-14T15:54:29.774420",
+  "total_evaluations": 2
+}

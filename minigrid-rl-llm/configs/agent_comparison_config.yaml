@@ -1,0 +1,29 @@
+# ============================================================================
+# Simplified RL Agent Comparison Configuration
+# ============================================================================
+# This configuration file controls which trained RL agents to compare.
+# Only generates training curves showing mean return and win rate together.
+
+# Where to find training results
+training_results_dir: '../4_RL_agent_training/RL_Training_Results_easyEnv'
+
+# Where to save the plots
+output_dir: 'Simple_Training_Plots'
+
+# Which experiments to plot (specify environment and config combinations)
+experiments_to_plot:
+  # Non-text experiments comparison
+  - environment: 'BabyAI-GoToObj-v0'
+    configs: ['baseline', 'oracle_hints_action', 'oracle_hints_subgoal']
+    
+  # Text experiments comparison  
+  - environment: 'BabyAI-GoToObj-v0'
+    configs: ['baseline_text', 'oracle_hints_action_text', 'oracle_hints_subgoal_text']
+
+# Plot settings
+plot_settings:
+  figure_width: 12
+  figure_height: 8
+  show_legend: true
+  save_format: 'png'
+  dpi: 300 

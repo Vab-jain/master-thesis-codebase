@@ -1,0 +1,319 @@
+# MiniGrid LLM Planner Training Examples
+
+This dataset contains concrete examples of expert navigation behavior in MiniGrid environments. Use these examples to learn how to make optimal decisions based on partial observations.
+
+## Observation Format
+- **image**: 7x7x3 array representing agent's partial view of the environment
+  - Each cell: [object_type, color, state]
+  - Object types: 0=empty, 1=floor, 2=wall, 4=door, 5=key, 7=box, 8=goal, 10=agent
+  - Colors: 0=red, 1=green, 2=blue, 3=purple, 4=yellow, 5=grey
+- **direction**: Agent's facing direction (0=right, 1=down, 2=left, 3=up)  
+- **mission**: Text description of the task
+
+## Action Space
+- **left**: Turn left (counter-clockwise)
+- **right**: Turn right (clockwise)
+- **forward**: Move forward one step
+- **pickup**: Pick up object in front of agent
+- **drop**: Drop carried object in front
+- **toggle**: Open/close doors, activate switches
+- **done**: Signal task completion
+
+## Navigation Strategy
+1. **Locate the goal** in the observation grid
+2. **Check for obstacles** in the intended direction  
+3. **Turn toward goal** if not facing the right direction
+4. **Move forward** when path is clear and direction is correct
+5. **Avoid walls** and navigate around obstacles
+6. **Complete sub-tasks** like collecting keys or opening doors
+
+## Complex Task Examples (BabyAI)
+These examples show multi-step reasoning for tasks involving keys, doors, and objects:
+
+Example 1:
+# Agent facing down. No goal visible (clear ahead) (Subgoal: GoNextToSubgoal)
+observation = {
+    "image": [[[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]]],
+    "direction": 1,
+    "mission": "pick up the grey box"
+}
+# Expected planner output: "left"
+
+Example 2:
+# Agent facing right. No goal visible (clear ahead) (Subgoal: GoNextToSubgoal)
+observation = {
+    "image": [[[0, 0, 0], [0, 0, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[0, 0, 0], [0, 0, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0], [1, 0, 0], [1, 0, 0]], [[0, 0, 0], [0, 0, 0], [2, 5, 0], [1, 0, 0], [5, 4, 0], [1, 0, 0], [1, 0, 0]], [[0, 0, 0], [0, 0, 0], [4, 4, 2], [1, 0, 0], [1, 0, 0], [1, 0, 0], [1, 0, 0]], [[0, 0, 0], [0, 0, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0], [1, 0, 0], [1, 0, 0]], [[0, 0, 0], [0, 0, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]]],
+    "direction": 0,
+    "mission": "pick up the grey box"
+}
+# Expected planner output: "left"
+
+Example 3:
+# Agent facing up. No goal visible (blocked ahead) (Subgoal: GoNextToSubgoal)
+observation = {
+    "image": [[[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0], [1, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0], [1, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [1, 0, 0], [5, 4, 0], [1, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0], [1, 0, 0]]],
+    "direction": 3,
+    "mission": "pick up the grey box"
+}
+# Expected planner output: "forward"
+
+Example 4:
+# Agent facing up. No goal visible (clear ahead) (Subgoal: GoNextToSubgoal)
+observation = {
+    "image": [[[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [1, 0, 0], [5, 4, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0]]],
+    "direction": 3,
+    "mission": "pick up the grey box"
+}
+# Expected planner output: "right"
+
+Example 5:
+# Agent facing right. No goal visible (blocked ahead) (Subgoal: GoNextToSubgoal)
+observation = {
+    "image": [[[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]], [[0, 0, 0], [0, 0, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[0, 0, 0], [0, 0, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0], [1, 0, 0], [1, 0, 0]], [[0, 0, 0], [0, 0, 0], [2, 5, 0], [1, 0, 0], [5, 4, 0], [1, 0, 0], [1, 0, 0]], [[0, 0, 0], [0, 0, 0], [4, 4, 2], [1, 0, 0], [1, 0, 0], [1, 0, 0], [1, 0, 0]], [[0, 0, 0], [0, 0, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0], [1, 0, 0], [1, 0, 0]], [[0, 0, 0], [0, 0, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]]],
+    "direction": 0,
+    "mission": "pick up the grey box"
+}
+# Expected planner output: "forward"
+
+Example 6:
+# Agent facing right. No goal visible (clear ahead) (Subgoal: PickupSubgoal)
+observation = {
+    "image": [[[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0], [1, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [1, 0, 0], [5, 4, 0], [1, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [4, 4, 2], [1, 0, 0], [1, 0, 0], [1, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0], [1, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]]],
+    "direction": 0,
+    "mission": "pick up the grey box"
+}
+# Expected planner output: "pickup"
+
+Example 7:
+# Agent facing right. No goal visible (clear ahead) (Subgoal: GoNextToSubgoal)
+observation = {
+    "image": [[[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0], [1, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0], [5, 4, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [4, 4, 2], [1, 0, 0], [1, 0, 0], [1, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0], [1, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]]],
+    "direction": 0,
+    "mission": "pick up the grey box"
+}
+# Expected planner output: "forward"
+
+Example 8:
+# Agent facing right. No goal visible (blocked ahead) (Subgoal: GoNextToSubgoal)
+observation = {
+    "image": [[[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [1, 0, 0], [5, 4, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [4, 4, 2], [1, 0, 0], [1, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]]],
+    "direction": 0,
+    "mission": "pick up the grey box"
+}
+# Expected planner output: "forward"
+
+Example 9:
+# Agent facing right. No goal visible (clear ahead) (Subgoal: GoNextToSubgoal)
+observation = {
+    "image": [[[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [2, 5, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [1, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [5, 4, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [4, 4, 2], [1, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [1, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [2, 5, 0]]],
+    "direction": 0,
+    "mission": "pick up the grey box"
+}
+# Expected planner output: "right"
+
+Example 10:
+# Agent facing down. No goal visible (blocked ahead) (Subgoal: GoNextToSubgoal)
+observation = {
+    "image": [[[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [2, 5, 0], [4, 4, 2], [2, 5, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0], [5, 4, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0], [1, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0], [1, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0], [1, 0, 0]]],
+    "direction": 1,
+    "mission": "pick up the grey box"
+}
+# Expected planner output: "forward"
+
+Example 11:
+# Agent facing down. No goal visible (clear ahead) (Subgoal: GoNextToSubgoal)
+observation = {
+    "image": [[[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [2, 5, 0], [4, 4, 2]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [1, 0, 0], [5, 4, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0]]],
+    "direction": 1,
+    "mission": "pick up the grey box"
+}
+# Expected planner output: "left"
+
+Example 12:
+# Agent facing right. No goal visible (clear ahead) (Subgoal: OpenSubgoal)
+observation = {
+    "image": [[[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [2, 5, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [1, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [1, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [4, 4, 2], [5, 4, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [1, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [2, 5, 0], [2, 5, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]]],
+    "direction": 0,
+    "mission": "pick up the grey box"
+}
+# Expected planner output: "toggle"
+
+## Navigation Examples (MiniGrid-Empty)
+These examples show basic navigation and obstacle avoidance:
+
+Example 1:
+# Agent facing right. Goal 3 steps right down (clear ahead)
+observation = {
+    "image": [[[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [8, 1, 0], [1, 0, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]]],
+    "direction": 0,
+    "mission": "get to the green goal square"
+}
+# Expected planner output: "forward"
+
+Example 2:
+# Agent facing right. Goal 4 steps right down (blocked ahead)
+observation = {
+    "image": [[[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [8, 1, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]]],
+    "direction": 0,
+    "mission": "get to the green goal square"
+}
+# Expected planner output: "right"
+
+Example 3:
+# Agent facing down. Goal 2 steps right up (blocked ahead)
+observation = {
+    "image": [[[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [8, 1, 0], [1, 0, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]]],
+    "direction": 1,
+    "mission": "get to the green goal square"
+}
+# Expected planner output: "left"
+
+Example 4:
+# Agent facing right. Goal 4 steps right down (blocked ahead)
+observation = {
+    "image": [[[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [8, 1, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]]],
+    "direction": 0,
+    "mission": "get to the green goal square"
+}
+# Expected planner output: "right"
+
+Example 5:
+# Agent facing down. Goal 2 steps right up (blocked ahead)
+observation = {
+    "image": [[[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [8, 1, 0], [1, 0, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]]],
+    "direction": 1,
+    "mission": "get to the green goal square"
+}
+# Expected planner output: "left"
+
+Example 6:
+# Agent facing right. Goal 4 steps right down (blocked ahead)
+observation = {
+    "image": [[[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [8, 1, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]]],
+    "direction": 0,
+    "mission": "get to the green goal square"
+}
+# Expected planner output: "right"
+
+Example 7:
+# Agent facing down. Goal 2 steps right up (blocked ahead)
+observation = {
+    "image": [[[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [8, 1, 0], [1, 0, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]]],
+    "direction": 1,
+    "mission": "get to the green goal square"
+}
+# Expected planner output: "left"
+
+Example 8:
+# Agent facing right. Goal 4 steps right down (blocked ahead)
+observation = {
+    "image": [[[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [8, 1, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]]],
+    "direction": 0,
+    "mission": "get to the green goal square"
+}
+# Expected planner output: "right"
+
+Example 9:
+# Agent facing right. Goal 3 steps right down (clear ahead)
+observation = {
+    "image": [[[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [8, 1, 0], [1, 0, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]]],
+    "direction": 0,
+    "mission": "get to the green goal square"
+}
+# Expected planner output: "forward"
+
+Example 10:
+# Agent facing right. Goal 4 steps right down (blocked ahead)
+observation = {
+    "image": [[[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [8, 1, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]]],
+    "direction": 0,
+    "mission": "get to the green goal square"
+}
+# Expected planner output: "right"
+
+Example 11:
+# Agent facing down. Goal 2 steps right up (blocked ahead)
+observation = {
+    "image": [[[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [8, 1, 0], [1, 0, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]]],
+    "direction": 1,
+    "mission": "get to the green goal square"
+}
+# Expected planner output: "left"
+
+Example 12:
+# Agent facing right. Goal 4 steps right down (blocked ahead)
+observation = {
+    "image": [[[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [8, 1, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]]],
+    "direction": 0,
+    "mission": "get to the green goal square"
+}
+# Expected planner output: "right"
+
+Example 13:
+# Agent facing down. Goal 2 steps right up (blocked ahead)
+observation = {
+    "image": [[[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [8, 1, 0], [1, 0, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]]],
+    "direction": 1,
+    "mission": "get to the green goal square"
+}
+# Expected planner output: "left"
+
+Example 14:
+# Agent facing right. Goal 4 steps right down (blocked ahead)
+observation = {
+    "image": [[[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [8, 1, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]]],
+    "direction": 0,
+    "mission": "get to the green goal square"
+}
+# Expected planner output: "right"
+
+Example 15:
+# Agent facing down. Goal 2 steps right up (blocked ahead)
+observation = {
+    "image": [[[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [8, 1, 0], [1, 0, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]]],
+    "direction": 1,
+    "mission": "get to the green goal square"
+}
+# Expected planner output: "left"
+
+Example 16:
+# Agent facing right. Goal 4 steps right down (blocked ahead)
+observation = {
+    "image": [[[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [1, 0, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [8, 1, 0], [1, 0, 0]], [[2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0], [2, 5, 0]]],
+    "direction": 0,
+    "mission": "get to the green goal square"
+}
+# Expected planner output: "right"
+
+
+## Task: Implement the Planner Function
+
+Using the examples above, implement a robust planner that can handle:
+- Basic navigation to visible goals
+- Obstacle avoidance (walls, other objects)
+- Multi-step tasks (keys, doors) when applicable
+- Efficient pathfinding with minimal turning
+
+```python
+def planner(observation):
+    """
+    Plan the next action based on the current observation.
+    
+    Args:
+        observation (dict): Contains 'image', 'direction', and 'mission'
+        
+    Returns:
+        str: One of 'left', 'right', 'forward', 'pickup', 'drop', 'toggle', 'done'
+    """
+    # Your implementation here
+    # Consider: goal location, obstacles, agent direction, task requirements
+    pass
+```
+
+## Key Implementation Tips:
+1. **Parse the observation** to find goal position and obstacles
+2. **Calculate optimal direction** using Manhattan distance
+3. **Check for obstacles** before moving forward  
+4. **Handle edge cases** like walls at environment boundaries
+5. **Plan multi-step sequences** for complex tasks (keys → doors → goals)
+6. **Use efficient turning** (shortest rotation to desired direction)

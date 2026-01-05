@@ -1,0 +1,376 @@
+# RL Training Configuration
+# This file configures the RL agent training pipeline
+
+# =======================================================================================
+# HINT SYSTEM CONFIGURATION GUIDE
+# =======================================================================================
+# 
+# The training system supports two types of hints:
+#
+# 1. SUBGOAL HINTS (hint_type: subgoal) - DEFAULT
+#    - High-level strategic objectives that guide the agent
+#    - Examples: "PickupSubgoal", "OpenSubgoal", "GoNextToSubgoal"
+#    - Provides strategic guidance while letting agent learn specific actions
+#    - Better for generalization and learning action sequences
+#    - Encoded as integers 0-7: CloseSubgoal(0), OpenSubgoal(1), DropSubgoal(2),
+#      PickupSubgoal(3), GoNextToSubgoal(4), ExploreSubgoal(5), done(6), none(7)
+#
+# 2. ACTION HINTS (hint_type: action)
+#    - Low-level primitive actions the agent should take
+#    - Examples: 0=turn_left, 1=turn_right, 2=move_forward, 3=pickup, 4=drop, 5=toggle, 6=done
+#    - Provides exact action guidance (more direct but less generalizable)
+#    - Useful for learning optimal action sequences quickly
+#    - May lead to over-reliance on hints
+#
+# HINT SOURCES:
+# - babyai_bot: Perfect oracle hints from expert BabyAI bot (supports both action and subgoal hints)
+# - dspy: Hints from fine-tuned language models (ONLY SUPPORTS ACTION HINTS - NOT SUBGOALS)
+#
+# HINT FREQUENCY & PROBABILITY:
+# - hint_frequency: Provide hints every N steps (e.g., 5 = every 5th step)
+# - hint_probability: Chance of providing hint when it's time (0.0-1.0)
+# - hint_stop_percentage: Stop providing hints after X% of training frames (0.0-1.0, default: 1.0 = never stop)
+#   Example: 0.5 = stop hints after 50% of total training frames
+#
+# IMPORTANT COMPATIBILITY NOTES:
+# ==============================
+# ⚠️  DSPy + subgoal combination is NOT SUPPORTED
+#     The refactored DSPy signature only outputs primitive_action, not subgoals.
+#     Valid combinations:
+#     ✅ hint_source: dspy + hint_type: action        (SUPPORTED)
+#     ❌ hint_source: dspy + hint_type: subgoal       (BLOCKED - will raise ValueError)
+#     ✅ hint_source: babyai_bot + hint_type: action   (SUPPORTED)
+#     ✅ hint_source: babyai_bot + hint_type: subgoal  (SUPPORTED)
+#
+# =======================================================================================
+
+general:
+  results_dir: 'RL_Training_Results_ALL_final_PickupLoc'
+  seed: 42
+  device: 'auto'
+  rolling_window_size: 1000  # Number of episodes for rolling win rate calculation (increased from 20)
+  min_episodes_for_thresholds: 1000  # Minimum episodes before checking success rate thresholds
+  success_rate_thresholds: [0.1, 0.25, 0.5, 0.75, 0.9]  # Thresholds to track (10%, 25%, 50%, 75%, 90%)
+  default_hint_stop_percentage: 1.0  # Default: never stop hints (can be overridden per training config)
+
+# Environment-specific configurations
+environments:
+  BabyAI-GoToObj-v0:
+    enabled: false
+    training_params:
+      frames: 3000000
+      procs: 32
+      frames_per_proc: 256
+      discount: 0.99
+      lr: 0.0001
+      gae_lambda: 0.95
+      entropy_coef: 0.01
+      value_loss_coef: 0.5
+      max_grad_norm: 0.5
+      clip_eps: 0.2
+      epochs: 4
+      batch_size: 256
+      log_interval: 1
+      save_interval: 25
+      eval_episodes: 100
+
+  BabyAI-OpenDoor-v0:
+    enabled: false
+    training_params:
+      frames: 3000000
+      procs: 32  # Increased for more stable learning
+      frames_per_proc: 256
+      discount: 0.99
+      lr: 0.0001  # Reduced learning rate for more stable learning with oracle hints
+      gae_lambda: 0.95
+      entropy_coef: 0.01
+      value_loss_coef: 0.5
+      max_grad_norm: 0.5
+      clip_eps: 0.2
+      epochs: 4
+      batch_size: 256  # Increased batch size for more stable updates
+      log_interval: 5  # Reduced logging frequency for cleaner plots
+      save_interval: 25
+      eval_episodes: 100
+
+  BabyAI-PickupLoc-v0:
+    enabled: true
+    training_params:
+      frames: 5000000
+      procs: 32
+      frames_per_proc: 256
+      discount: 0.99
+      lr: 0.0005
+      gae_lambda: 0.95
+      entropy_coef: 0.015
+      value_loss_coef: 0.5
+      max_grad_norm: 0.5
+      clip_eps: 0.2
+      epochs: 4
+      batch_size: 256
+      log_interval: 1
+      save_interval: 25
+      eval_episodes: 100
+  
+  BabyAI-UnlockPickup-v0:
+    enabled: false
+    training_params:
+      frames: 8000000
+      procs: 32
+      frames_per_proc: 256
+      discount: 0.99
+      lr: 0.0003
+      gae_lambda: 0.95
+      entropy_coef: 0.02
+      value_loss_coef: 0.5
+      max_grad_norm: 0.5
+      clip_eps: 0.2
+      epochs: 4
+      batch_size: 256
+      log_interval: 1
+      save_interval: 100
+      eval_episodes: 100
+
+# Training configurations (applied to all enabled environments)
+training_configs:
+  ### baselines 
+  # - name: baseline
+  #   use_hints: false
+  #   use_text: false
+  #   use_rgb: false
+  #   use_memory: false
+  #   description: "Baseline agent without hints"
+  
+  # - name: baseline_text
+  #   use_hints: false
+  #   use_text: true
+  #   use_rgb: false
+  #   use_memory: false
+  #   description: "Baseline agent without hints with text"
+  
+  ### oracle
+  # - name: oracle_hints_action_1
+  #   use_hints: true
+  #   hint_source: babyai_bot
+  #   hint_type: action  # Type of hint: "subgoal" or "action"
+  #   hint_frequency: 1  # Provide hints every 5 steps
+  #   hint_probability: 1.0  # 100% probability when it's time to hint
+  #   use_text: false
+  #   use_rgb: false
+  #   use_memory: false
+  #   description: "Agent with Oracle Bot action hints every step"
+
+  # - name: oracle_hints_action_5
+  #   use_hints: true
+  #   hint_source: babyai_bot
+  #   hint_type: action  # Type of hint: "subgoal" or "action"
+  #   hint_frequency: 5  # Provide hints every 5 steps
+  #   hint_probability: 1.0  # 100% probability when it's time to hint
+  #   use_text: false
+  #   use_rgb: false
+  #   use_memory: false
+  #   description: "Agent with Oracle Bot action hints every 5 step"
+
+  # - name: oracle_hints_action_10
+  #   use_hints: true
+  #   hint_source: babyai_bot
+  #   hint_type: action  # Type of hint: "subgoal" or "action"
+  #   hint_frequency: 10  # Provide hints every 5 steps
+  #   hint_probability: 1.0  # 100% probability when it's time to hint
+  #   use_text: false
+  #   use_rgb: false
+  #   use_memory: false
+  #   description: "Agent with Oracle Bot action hints every 5 step"
+
+  # ### oracle text
+  # - name: oracle_hints_action_1_text
+  #   use_hints: true
+  #   hint_source: babyai_bot
+  #   hint_type: action  # Type of hint: "subgoal" or "action"
+  #   hint_frequency: 1 
+  #   hint_probability: 1.0 
+  #   use_text: true
+  #   use_rgb: false
+  #   use_memory: false
+  #   description: "Agent with Oracle Bot action hints every step"
+
+  # - name: oracle_hints_action_5_text
+  #   use_hints: true
+  #   hint_source: babyai_bot
+  #   hint_type: action  # Type of hint: "subgoal" or "action"
+  #   hint_frequency: 5  # Provide hints every 5 steps
+  #   hint_probability: 1.0  # 100% probability when it's time to hint
+  #   use_text: true
+  #   use_rgb: false
+  #   use_memory: false
+  #   description: "Agent with Oracle Bot action hints every 5 step"
+
+  # - name: oracle_hints_action_10_text
+  #   use_hints: true
+  #   hint_source: babyai_bot
+  #   hint_type: action  # Type of hint: "subgoal" or "action"
+  #   hint_frequency: 10  
+  #   hint_probability: 1.0  
+  #   use_text: true
+  #   use_rgb: false
+  #   use_memory: false
+  #   description: "Agent with Oracle Bot action hints every 5 step"
+  
+  ### LLM
+  # - name: llm_hints_action_1
+  #   use_hints: true
+  #   hint_source: dspy
+  #   hint_type: action  # Type of hint: "subgoal" or "action"
+  #   hint_frequency: 1 
+  #   hint_probability: 0.5  
+  #   use_text: false
+  #   use_rgb: false
+  #   use_memory: false
+  #   description: "Agent with LLM action hints every step"
+
+  # - name: llm_hints_action_5
+  #   use_hints: true
+  #   hint_source: dspy
+  #   hint_type: action  # Type of hint: "subgoal" or "action"
+  #   hint_frequency: 5  # Provide hints every 5 steps
+  #   hint_probability: 0.5  
+  #   use_text: false
+  #   use_rgb: false
+  #   use_memory: false
+  #   description: "Agent with LLM action hints every 5 step"
+
+  # - name: llm_hints_action_10
+  #   use_hints: true
+  #   hint_source: dspy
+  #   hint_type: action  # Type of hint: "subgoal" or "action"
+  #   hint_frequency: 10  # Provide hints every 5 steps
+  #   hint_probability: 0.5  # 100% probability when it's time to hint
+  #   use_text: false
+  #   use_rgb: false
+  #   use_memory: false
+  #   description: "Agent with LLM action hints every 10 step"
+
+  # - name: llm_hints_action_1
+  #   use_hints: true
+  #   hint_source: dspy
+  #   hint_type: action  # Type of hint: "subgoal" or "action"
+  #   hint_frequency: 1  # Provide hints every 5 steps
+  #   hint_probability: 0.2  # 100% probability when it's time to hint
+  #   use_text: false
+  #   use_rgb: false
+  #   use_memory: false
+  #   description: "Agent with LLM action hints every step"
+
+  # - name: llm_hints_action_5
+  #   use_hints: true
+  #   hint_source: dspy
+  #   hint_type: action  # Type of hint: "subgoal" or "action"
+  #   hint_frequency: 5  # Provide hints every 5 steps
+  #   hint_probability: 0.2  # 100% probability when it's time to hint
+  #   use_text: false
+  #   use_rgb: false
+  #   use_memory: false
+  #   description: "Agent with LLM action hints every 5 step"
+
+  # - name: llm_hints_action_10
+  #   use_hints: true
+  #   hint_source: dspy
+  #   hint_type: action  # Type of hint: "subgoal" or "action"
+  #   hint_frequency: 10  # Provide hints every 5 steps
+  #   hint_probability: 0.2  # 100% probability when it's time to hint
+  #   use_text: false
+  #   use_rgb: false
+  #   use_memory: false
+  #   description: "Agent with LLM action hints every 10 step"
+
+  ### LLM with text
+  # - name: llm_hints_action_1_text
+  #   use_hints: true
+  #   hint_source: dspy
+  #   hint_type: action  # Type of hint: "subgoal" or "action"
+  #   hint_frequency: 1  # Provide hints every 5 steps
+  #   hint_probability: 0.5  # 100% probability when it's time to hint
+  #   use_text: true
+  #   use_rgb: false
+  #   use_memory: false
+  #   description: "Agent with LLM action hints every step"
+
+  # - name: llm_hints_action_5_text
+  #   use_hints: true
+  #   hint_source: dspy
+  #   hint_type: action  # Type of hint: "subgoal" or "action"
+  #   hint_frequency: 5  # Provide hints every 5 steps
+  #   hint_probability: 0.5  # 100% probability when it's time to hint
+  #   use_text: true
+  #   use_rgb: false
+  #   use_memory: false
+  #   description: "Agent with LLM action hints every 5 step"
+
+  # - name: llm_hints_action_10_text
+  #   use_hints: true
+  #   hint_source: dspy
+  #   hint_type: action  # Type of hint: "subgoal" or "action"
+  #   hint_frequency: 10  # Provide hints every 5 steps
+  #   hint_probability: 0.5  # 100% probability when it's time to hint
+  #   use_text: true
+  #   use_rgb: false
+  #   use_memory: false
+  #   description: "Agent with LLM action hints every 10 step"
+
+  - name: llm_hints_action_1_text
+    use_hints: true
+    hint_source: dspy
+    hint_type: action  # Type of hint: "subgoal" or "action"
+    hint_frequency: 1  # Provide hints every 5 steps
+    hint_probability: 0.2  # 100% probability when it's time to hint
+    hint_stop_percentage: 1.0  # Stop hints after X% of training (1.0 = never stop)
+    use_text: true
+    use_rgb: false
+    use_memory: false
+    description: "Agent with LLM action hints every step"
+
+  - name: llm_hints_action_5_text
+    use_hints: true
+    hint_source: dspy
+    hint_type: action  # Type of hint: "subgoal" or "action"
+    hint_frequency: 5  # Provide hints every 5 steps
+    hint_probability: 0.2  # 100% probability when it's time to hint
+    hint_stop_percentage: 1.0  # Stop hints after X% of training (1.0 = never stop)
+    use_text: true
+    use_rgb: false
+    use_memory: false
+    description: "Agent with LLM action hints every 5 step"
+
+  - name: llm_hints_action_10_text
+    use_hints: true
+    hint_source: dspy
+    hint_type: action  # Type of hint: "subgoal" or "action"
+    hint_frequency: 10  # Provide hints every 5 steps
+    hint_probability: 0.2  # 100% probability when it's time to hint
+    hint_stop_percentage: 1.0  # Stop hints after X% of training (1.0 = never stop)
+    use_text: true
+    use_rgb: false
+    use_memory: false
+    description: "Agent with LLM action hints every 10 step"
+
+# Default training parameters (used as fallback)
+default_training_params:
+  algo: 'ppo'
+  frames: 100000
+  procs: 1
+  frames_per_proc: 128
+  discount: 0.99
+  lr: 0.001
+  gae_lambda: 0.95
+  entropy_coef: 0.01
+  value_loss_coef: 0.5
+  max_grad_norm: 0.5
+  clip_eps: 0.2
+  epochs: 4
+  batch_size: 256
+  log_interval: 1
+  save_interval: 25
+  eval_episodes: 100
+
+# Output directory for trained agents
+output_dir: "RL_Trained_Agents" 

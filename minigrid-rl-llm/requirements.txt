@@ -1,0 +1,9 @@
+matplotlib
+minigrid
+numpy
+PyYAML
+tensorboardX
+torch
+torch_ac
+pydantic
+

@@ -1,0 +1,91 @@
+{
+  "accuracy": 0.2,
+  "correct_predictions": 2,
+  "total_predictions": 10,
+  "testset_size": 10,
+  "hint_type": "action",
+  "encoding_type": "ascii",
+  "model_path": null,
+  "dataset_path": "../1_GT_collection/GT_dataset/dataset_9env_5seed_5episodes_v2_0623_2116",
+  "predictions": [
+    {
+      "example_id": 0,
+      "observation": "Grid:\nW W W W W W W W W W W W W W W W W W W W W W\nW . . . . . . W B . . . . . W . X . . . . W\nW . . ...",
+      "target": "5",
+      "predicted": 2,
+      "correct": false
+    },
+    {
+      "example_id": 1,
+      "observation": "Grid:\nW W W W W W W W W W W W W W W W W W W W W W\nW . . B . . . W . . . . . . W . K . . . . W\nW . . ...",
+      "target": "2",
+      "predicted": 2,
+      "correct": true
+    },
+    {
+      "example_id": 2,
+      "observation": "Grid:\nW W W W W W W W W W W W W W W W W W W W W W\nW . . . . . . W . . . . . . W . . . . > . W\nW . . ...",
+      "target": "1",
+      "predicted": 2,
+      "correct": false
+    },
+    {
+      "example_id": 3,
+      "observation": "Grid:\nW W W W W W W W W W W W W W W W W W W W W W\nW . . . . . . W . . . . . . W . B . . . . W\nW . . ...",
+      "target": "3",
+      "predicted": 2,
+      "correct": false
+    },
+    {
+      "example_id": 4,
+      "observation": "Grid:\nW W W W W W W W W W W W W W W W W W W W W W\nW . . . B . . W . . . . . . W . . . . . B W\nW . . ...",
+      "target": "2",
+      "predicted": 2,
+      "correct": true
+    },
+    {
+      "example_id": 5,
+      "observation": "Grid:\nW W W W W W W W W W W W W W W W W W W W W W\nW . . . . X . W . . . . . . W . K . . K . W\nW . . ...",
+      "target": "1",
+      "predicted": 2,
+      "correct": false
+    },
+    {
+      "example_id": 6,
+      "observation": "Grid:\nW W W W W W W W W W W W W W W W W W W W W W\nW . . . B . . W . . . . . . W . . . . . B W\nW . . ...",
+      "target": "0",
+      "predicted": 2,
+      "correct": false
+    },
+    {
+      "example_id": 7,
+      "observation": "Grid:\nW W W W W W W W W W W W W W W W W W W W W W\nW . . . . B . W . . . . . . W . . . . . . W\nW . . ...",
+      "target": "6",
+      "predicted": 2,
+      "correct": false
+    },
+    {
+      "example_id": 8,
+      "observation": "Grid:\nW W W W W W W W W W W W W W W W W W W W W W\nW . . . . . . W . . . . . . W . . . . . . W\nW . K ...",
+      "target": "5",
+      "predicted": 2,
+      "correct": false
+    },
+    {
+      "example_id": 9,
+      "observation": "Grid:\nW W W W W W W W W W W W W W W W W W W W W W\nW . . . . . . W . . . . . . W . . . . . K W\nW . . ...",
+      "target": "0",
+      "predicted": 2,
+      "correct": false
+    }
+  ],
+  "evaluation_time_seconds": 8.009852886199951,
+  "timestamp": "2025-07-14T16:11:20.019798",
+  "config": {
+    "dataset_path": "../1_GT_collection/GT_dataset/dataset_9env_5seed_5episodes_v2_0623_2116",
+    "hint_type": "action",
+    "encoding_type": "ascii",
+    "model_path": null,
+    "testset_size": 10
+  }
+}

@@ -1,0 +1,108 @@
+# LLM Evaluation Configuration
+# This file configures the LLM evaluation pipeline
+
+# List of evaluations to run
+evaluations:
+  # Evaluate saved subgoal predictor models - COMMENTED OUT
+  # - dataset_path: "GT_dataset/dataset_example"  # Will be overridden by command line
+  #   hint_type: "subgoal"
+  #   encoding_type: "ascii"
+  #   model_path: "saved_llm_models/subgoal_predictor_ascii_5demos_10samples.json"
+  #   testset_size: 10
+
+  # - dataset_path: "GT_dataset/dataset_example"
+  #   hint_type: "subgoal"
+  #   encoding_type: "natural"
+  #   model_path: "saved_llm_models/subgoal_predictor_natural_5demos_10samples.json"
+  #   testset_size: 10
+
+  # - dataset_path: "GT_dataset/dataset_example"
+  #   hint_type: "subgoal"
+  #   encoding_type: "tuples"
+  #   model_path: "saved_llm_models/subgoal_predictor_tuples_5demos_10samples.json"
+  #   testset_size: 10
+
+  # - dataset_path: "GT_dataset/dataset_example"
+  #   hint_type: "subgoal"
+  #   encoding_type: "relative"
+  #   model_path: "saved_llm_models/subgoal_predictor_relative_5demos_10samples.json"
+  #   testset_size: 10
+
+  # Evaluate saved action predictor models - COMMENTED OUT
+  # - dataset_path: "GT_dataset/dataset_example"
+  #   hint_type: "action"
+  #   encoding_type: "ascii"
+  #   model_path: "saved_llm_models/action_predictor_ascii_5demos_10samples.json"
+  #   testset_size: 10
+
+  # - dataset_path: "GT_dataset/dataset_example"
+  #   hint_type: "action"
+  #   encoding_type: "natural"
+  #   model_path: "saved_llm_models/action_predictor_natural_5demos_10samples.json"
+  #   testset_size: 10
+
+  # Direct LLM evaluations (using DSPy llama-3.3-70b-versatile)
+  # Subgoal predictions
+  - dataset_path: "../1_GT_collection/GT_dataset/dataset_9env_5seed_5episodes_v2_0623_2116"
+    hint_type: "subgoal"
+    encoding_type: "ascii"
+    model_path: null  # Direct LLM
+    testset_size: 10
+
+  - dataset_path: "../1_GT_collection/GT_dataset/dataset_9env_5seed_5episodes_v2_0623_2116"
+    hint_type: "subgoal"
+    encoding_type: "natural"
+    model_path: null  # Direct LLM
+    testset_size: 10
+
+  - dataset_path: "../1_GT_collection/GT_dataset/dataset_9env_5seed_5episodes_v2_0623_2116"
+    hint_type: "subgoal"
+    encoding_type: "tuples"
+    model_path: null  # Direct LLM
+    testset_size: 10
+
+  - dataset_path: "../1_GT_collection/GT_dataset/dataset_9env_5seed_5episodes_v2_0623_2116"
+    hint_type: "subgoal"
+    encoding_type: "relative"
+    model_path: null  # Direct LLM
+    testset_size: 10
+
+  # Action predictions
+  - dataset_path: "../1_GT_collection/GT_dataset/dataset_9env_5seed_5episodes_v2_0623_2116"
+    hint_type: "action"
+    encoding_type: "ascii"
+    model_path: null  # Direct LLM
+    testset_size: 10
+
+  - dataset_path: "../1_GT_collection/GT_dataset/dataset_9env_5seed_5episodes_v2_0623_2116"
+    hint_type: "action"
+    encoding_type: "natural"
+    model_path: null  # Direct LLM
+    testset_size: 10
+
+  - dataset_path: "../1_GT_collection/GT_dataset/dataset_9env_5seed_5episodes_v2_0623_2116"
+    hint_type: "action"
+    encoding_type: "tuples"
+    model_path: null  # Direct LLM
+    testset_size: 10
+
+  - dataset_path: "../1_GT_collection/GT_dataset/dataset_9env_5seed_5episodes_v2_0623_2116"
+    hint_type: "action"
+    encoding_type: "relative"
+    model_path: null  # Direct LLM
+    testset_size: 10
+
+  # # Different test set sizes
+  # - dataset_path: "GT_dataset/dataset_example"
+  #   hint_type: "subgoal"
+  #   encoding_type: "ascii"
+  #   model_path: "saved_llm_models/subgoal_predictor_ascii_5demos_10samples.json"
+  #   testset_size: 20
+  #   output_dir: "LLM_evaluation/subgoal_ascii_20samples"
+
+  # - dataset_path: "GT_dataset/dataset_example"
+  #   hint_type: "subgoal"
+  #   encoding_type: "ascii"
+  #   model_path: "saved_llm_models/subgoal_predictor_ascii_5demos_10samples.json"
+  #   testset_size: 50
+  #   output_dir: "LLM_evaluation/subgoal_ascii_50samples"

@@ -1,0 +1,38 @@
+# Ground Truth Data Collection Configuration
+# This file configures the GT data collection process
+
+# Number of episodes to collect for each environment-seed combination
+# Each episode will have a different random seed for environment generation
+episodes_per_seed: 5
+
+# Maximum number of steps per episode (safety limit to prevent infinite loops)
+max_steps_per_episode: 1000
+
+# List of environments to collect data from
+environments:
+  # easy
+  - "BabyAI-GoToObj-v0"
+  - "BabyAI-OpenDoor-v0"
+  # medium
+  - "BabyAI-GoToSeq-v0"
+  - "BabyAI-Open-v0"
+  - "BabyAI-PickupLoc-v0"
+  - "BabyAI-PutNextLocalS6N4-v0"
+  # hard
+  - "BabyAI-GoToImpUnlock-v0"
+  - "BabyAI-BlockedUnlockPickup-v0"
+  - "BabyAI-Synth-v0"
+
+# List of seeds to use for data collection
+seeds:
+  - 42
+  - 123
+  - 456
+  - 789
+  - 999
+
+# Output directory for collected data
+output_dir: "GT_dataset"
+
+# Train/test split ratio (Example: 0.8 = 80% train, 20% test)
+train_ratio: 0.5 

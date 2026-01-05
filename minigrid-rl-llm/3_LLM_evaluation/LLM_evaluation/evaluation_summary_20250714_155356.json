@@ -1,0 +1,18 @@
+{
+  "summary": [
+    {
+      "experiment_name": "eval_action_ascii_direct_llm_5samples",
+      "accuracy": 40.0,
+      "evaluation_time": 7.396221160888672,
+      "config": {
+        "dataset_path": "../1_GT_collection/GT_dataset/dataset_9env_5seed_5episodes_v2_0623_2116",
+        "hint_type": "action",
+        "encoding_type": "ascii",
+        "model_path": null,
+        "testset_size": 5
+      }
+    }
+  ],
+  "timestamp": "2025-07-14T15:53:56.011253",
+  "total_evaluations": 1
+}

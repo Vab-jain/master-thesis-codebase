@@ -1,0 +1,1113 @@
+Collecting 10 examples from each environment (30 total)
+Environments: ['BabyAI-GoToObj-v0', 'BabyAI-OpenDoor-v0', 'BabyAI-PickupLoc-v0']
+============================================================
+
+
+--- Starting BabyAI-GoToObj-v0 (Target: 10 examples) ---
+
+Episode 1 (BabyAI-GoToObj-v0):
+----------------------------------------
+ID: 1
+Environment: BabyAI-GoToObj-v0
+Episode: 1, Step: 0
+Observation:
+Grid:
+W W W W W W W W
+W . . . . . . W
+W . . . . . . W
+W X . . . . . W
+W . . . . . < W
+W . . . . . . W
+W . . . . . . W
+W W W W W W W W
+
+Legend:
+< - agent facing west
+? - unseen
+. - empty
+W - wall
+X - green box
+
+Mission: go to the green box
+LLM Response: Prediction(
+    reasoning="The agent's mission is to go to the green box. Given the current state of the maze, the agent is facing west and the green box is located above it. To reach the green box, the agent needs to move forward. Since the agent is already facing the correct direction (west), it can move forward without needing to turn.",
+    primitive_action=2
+)
+==================================================
+
+ID: 2
+Environment: BabyAI-GoToObj-v0
+Episode: 1, Step: 5
+Observation:
+Grid:
+W W W W W W W W
+W . . . . . . W
+W . . . . . . W
+W X . . . . . W
+W < . . . . . W
+W . . . . . . W
+W . . . . . . W
+W W W W W W W W
+
+Legend:
+< - agent facing west
+? - unseen
+. - empty
+W - wall
+X - green box
+
+Mission: go to the green box
+LLM Response: Prediction(
+    reasoning="The agent's mission is to go to the green box. The current state of the maze shows the agent facing west and the green box located two steps ahead in the east direction, but since the agent is facing west, it first needs to turn around to face the correct direction. The agent's current position is at the fourth row, and the green box is at the same row but a few steps to the east. Since the agent is facing west, the first action should be to turn the agent around to face east.",
+    primitive_action=1
+)
+==================================================
+
+Episode 2 (BabyAI-GoToObj-v0):
+----------------------------------------
+ID: 3
+Environment: BabyAI-GoToObj-v0
+Episode: 2, Step: 0
+Observation:
+Grid:
+W W W W W W W W
+W . . . . . . W
+W . . . . . . W
+W . . . . . . W
+W . . . . . . W
+W . . < . . . W
+W . X . . . . W
+W W W W W W W W
+
+Legend:
+< - agent facing west
+? - unseen
+. - empty
+W - wall
+X - grey box
+
+Mission: go to the grey box
+LLM Response: Prediction(
+    reasoning="The agent's mission is to go to the grey box. Given the current state of the maze, the agent is facing west and is located above the grey box. To reach the grey box, the agent needs to move forward. Since the agent is already facing the correct direction (west), the next action should be to move forward.",
+    primitive_action=2
+)
+==================================================
+
+Episode 3 (BabyAI-GoToObj-v0):
+----------------------------------------
+ID: 4
+Environment: BabyAI-GoToObj-v0
+Episode: 3, Step: 0
+Observation:
+Grid:
+W W W W W W W W
+W . . . . . . W
+W . . . . . . W
+W X . . . . . W
+W . . . . . . W
+W > . . . . . W
+W . . . . . . W
+W W W W W W W W
+
+Legend:
+> - agent facing east
+? - unseen
+. - empty
+W - wall
+X - green box
+
+Mission: go to the green box
+LLM Response: Prediction(
+    reasoning="The agent's mission is to go to the green box. The current state of the environment shows the agent facing east and the green box located two steps south of the agent. Since the agent is already facing the correct direction (east), the next step would be to move forward towards the green box. However, the green box is actually located below the agent, so the agent needs to turn and move south to reach it.",
+    primitive_action=2
+)
+==================================================
+
+Episode 4 (BabyAI-GoToObj-v0):
+----------------------------------------
+ID: 5
+Environment: BabyAI-GoToObj-v0
+Episode: 4, Step: 0
+Observation:
+Grid:
+W W W W W W W W
+W . . . . . . W
+W . . . < . . W
+W . . . . . . W
+W . . . . . . W
+W . . . . . . W
+W . . . . . O W
+W W W W W W W W
+
+Legend:
+< - agent facing west
+? - unseen
+. - empty
+W - wall
+O - red ball
+
+Mission: go to the red ball
+LLM Response: Prediction(
+    reasoning="The agent's mission is to go to the red ball. Given the current state of the maze, the agent is facing west and the red ball is located at the bottom right corner of the grid. Since the agent's position and the red ball's position are known, the next subgoal should be to move towards the red ball. The most efficient way to do this would be to move forward, as the agent is already facing in the general direction of the red ball. However, since the agent is facing west and the red ball is to the east, the agent needs to turn around first. The primitive action that corresponds to turning around is turning right twice (or turning left twice), but the most straightforward action would be to turn right, as this will eventually allow the agent to face the correct direction and move towards the red ball.",
+    primitive_action=1
+)
+==================================================
+
+ID: 6
+Environment: BabyAI-GoToObj-v0
+Episode: 4, Step: 5
+Observation:
+Grid:
+W W W W W W W W
+W . . . . . . W
+W . . . . . . W
+W . . . . . . W
+W . . . . . . W
+W . . . . . . W
+W . . . v . O W
+W W W W W W W W
+
+Legend:
+v - agent facing south
+? - unseen
+. - empty
+W - wall
+O - red ball
+
+Mission: go to the red ball
+LLM Response: Prediction(
+    reasoning="The agent's mission is to go to the red ball. Given the current state of the maze, the agent is facing south and the red ball is located to the right of the agent. Since the agent is already facing the correct direction (south) to move towards the red ball, but the red ball is to the agent's right, the agent needs to turn right to face the direction of the red ball. After turning, the agent can move forward to reach the red ball.",
+    primitive_action=1
+)
+==================================================
+
+Episode 5 (BabyAI-GoToObj-v0):
+----------------------------------------
+ID: 7
+Environment: BabyAI-GoToObj-v0
+Episode: 5, Step: 0
+Observation:
+Grid:
+W W W W W W W W
+W . . . . . . W
+W . O . . . . W
+W . . . . . . W
+W . . . . . . W
+W > . . . . . W
+W . . . . . . W
+W W W W W W W W
+
+Legend:
+> - agent facing east
+? - unseen
+. - empty
+W - wall
+O - red ball
+
+Mission: go to the red ball
+LLM Response: Prediction(
+    reasoning="The agent's mission is to go to the red ball. Given the current state of the maze, the agent is facing east and the red ball is located two steps north of the agent. Since the agent's previous actions are not provided, we can assume this is the start of the episode. The agent needs to move north to reach the red ball. However, the agent is currently facing east, so it needs to turn left (or right) to face north before moving forward.",
+    primitive_action=2
+)
+==================================================
+
+Episode 6 (BabyAI-GoToObj-v0):
+----------------------------------------
+ID: 8
+Environment: BabyAI-GoToObj-v0
+Episode: 6, Step: 0
+Observation:
+Grid:
+W W W W W W W W
+W . . . . . . W
+W . . v . . . W
+W . . . . . . W
+W . . . . O . W
+W . . . . . . W
+W . . . . . . W
+W W W W W W W W
+
+Legend:
+v - agent facing south
+? - unseen
+. - empty
+W - wall
+O - blue ball
+
+Mission: go to the blue ball
+LLM Response: Prediction(
+    reasoning="The agent's mission is to go to the blue ball. Given the current state of the maze, the agent is facing south and the blue ball is located below it, separated by a few empty spaces. Since the agent is already facing in the correct direction, the next subgoal should be to move forward towards the blue ball.",
+    primitive_action=2
+)
+==================================================
+
+Episode 7 (BabyAI-GoToObj-v0):
+----------------------------------------
+ID: 9
+Environment: BabyAI-GoToObj-v0
+Episode: 7, Step: 0
+Observation:
+Grid:
+W W W W W W W W
+W . . . . . . W
+W O . . . . . W
+W . . . . . . W
+W . . . . . . W
+W . . . . . . W
+W . . . . . v W
+W W W W W W W W
+
+Legend:
+v - agent facing south
+? - unseen
+. - empty
+W - wall
+O - blue ball
+
+Mission: go to the blue ball
+LLM Response: Prediction(
+    reasoning="The agent's mission is to go to the blue ball. Given the current state of the maze, the blue ball (O) is located above the agent. The agent is currently facing south, so it needs to turn around to face the blue ball. The most efficient way to do this would be to turn the agent around to face north and then move forward.",
+    primitive_action=1
+)
+==================================================
+
+ID: 10
+Environment: BabyAI-GoToObj-v0
+Episode: 7, Step: 5
+Observation:
+Grid:
+W W W W W W W W
+W . . . . . . W
+W O . . . . . W
+W . . . . . ^ W
+W . . . . . . W
+W . . . . . . W
+W . . . . . . W
+W W W W W W W W
+
+Legend:
+^ - agent facing north
+? - unseen
+. - empty
+W - wall
+O - blue ball
+
+Mission: go to the blue ball
+LLM Response: Prediction(
+    reasoning="The agent's mission is to go to the blue ball. Given the current state of the maze, the blue ball (O) is located two steps south and one step east of the agent's current position. Since the agent is facing north, it first needs to turn around to face the direction of the blue ball. The most efficient way to start moving towards the blue ball is to turn right, so the agent faces east, and then move forward. However, since the agent needs to move south as well, it should first turn right to face east and then turn right again to face south. But considering the immediate next step to align with the goal, turning right to face east is the initial step to get closer to the blue ball by eventually moving in that direction after turning to face south.",
+    primitive_action=1
+)
+==================================================
+
+
+--- Starting BabyAI-OpenDoor-v0 (Target: 10 examples) ---
+
+Episode 8 (BabyAI-OpenDoor-v0):
+----------------------------------------
+ID: 11
+Environment: BabyAI-OpenDoor-v0
+Episode: 8, Step: 0
+Observation:
+Grid:
+W W W W W W W W W W W W W W W W W W W W W W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W W W W W W W W ZD W W W W W W W W W W W W W
+W . . . . . . W . . > . . . W . . . . . . W
+W . . . . . . YD . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . GD . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W W W W W W W W PD W W W W W W W W W W W W W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W W W W W W W W W W W W W W W W W W W W W W
+
+Legend:
+> - agent facing east
+? - unseen
+. - empty
+W - wall
+YD - yellow door (closed)
+ZD - grey door (closed)
+PD - purple door (closed)
+GD - green door (closed)
+
+Mission: open a door behind you
+LLM Response: Prediction(
+    reasoning="To accomplish the mission of opening a door behind the agent, we first need to identify the doors in the maze and their locations relative to the agent. The agent is currently facing east, as indicated by the '>' symbol. The doors in the maze are colored and their locations are as follows: yellow door (YD) to the south, grey door (ZD) to the north, purple door (PD) to the south, and green door (GD) to the south. Since the agent needs to open a door behind it, it must first turn around to face the doors that are behind it, which includes the grey door (ZD). The agent's current position and the position of the doors suggest that the grey door (ZD) is the closest door behind the agent. Therefore, the agent needs to turn around to face west and then move towards the grey door (ZD) to open it.",
+    primitive_action=0
+)
+==================================================
+
+ID: 12
+Environment: BabyAI-OpenDoor-v0
+Episode: 8, Step: 5
+Observation:
+Grid:
+W W W W W W W W W W W W W W W W W W W W W W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W W W W W W W W ZD W W W W W W W W W W W W W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . YD < . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . GD . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W W W W W W W W PD W W W W W W W W W W W W W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W W W W W W W W W W W W W W W W W W W W W W
+
+Legend:
+< - agent facing west
+? - unseen
+. - empty
+W - wall
+YD - yellow door (closed)
+ZD - grey door (closed)
+PD - purple door (closed)
+GD - green door (closed)
+
+Mission: open a door behind you
+LLM Response: Prediction(
+    reasoning="The agent's mission is to open a door behind it. Given the current state of the maze, the agent is facing west and there are several doors behind it (east direction), but the closest one is the grey door (ZD). To open the door, the agent first needs to turn around to face the door and then move towards it. Since the agent is currently facing west, it needs to turn around to face east. The primitive action to turn the agent to the right (which would be south, then west is not an option since the agent is already facing west, so the next turn would be north and then finally east) is not necessary in this case, as the agent can turn left to face south and then continue turning left to face east. However, the most straightforward action to achieve the desired orientation (facing east) would be to turn the agent to the right until it faces east, but since the agent can only turn left or right, it will turn left three times (or right once, but the description will follow the turn left logic for consistency). However, considering the available actions (0 for left, 1 for right), the most efficient way to face east would indeed be to turn right, which corresponds to action 1.",
+    primitive_action=1
+)
+==================================================
+
+Episode 9 (BabyAI-OpenDoor-v0):
+----------------------------------------
+ID: 13
+Environment: BabyAI-OpenDoor-v0
+Episode: 9, Step: 0
+Observation:
+Grid:
+W W W W W W W W W W W W W W W W W W W W W W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W W W W W W W W W W W W W ZD W W W W W W W W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W < . . . . . W . . . . . . W
+W . . . . . . W . . . . . . PD . . . . . . W
+W . . . . . . YD . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W W W W W W W W GD W W W W W W W W W W W W W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W W W W W W W W W W W W W W W W W W W W W W
+
+Legend:
+< - agent facing west
+? - unseen
+. - empty
+W - wall
+YD - yellow door (closed)
+ZD - grey door (closed)
+PD - purple door (closed)
+GD - green door (closed)
+
+Mission: open a door behind you
+LLM Response: Prediction(
+    reasoning="The agent's mission is to open a door behind it. Given the current state of the maze, the agent is facing west and there are several doors behind it (grey, yellow, and purple). However, since the agent is facing west and needs to open a door behind it, it first needs to turn around to face the doors. The most logical first step would be to turn the agent around to face east, which would allow it to navigate towards and interact with the doors behind its current position.",
+    primitive_action=1
+)
+==================================================
+
+ID: 14
+Environment: BabyAI-OpenDoor-v0
+Episode: 9, Step: 5
+Observation:
+Grid:
+W W W W W W W W W W W W W W W W W W W W W W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W W W W W W W W W W W W W ZD W W W W W W W W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . > . . W . . . . . . W
+W . . . . . . W . . . . . . PD . . . . . . W
+W . . . . . . YD . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W W W W W W W W GD W W W W W W W W W W W W W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W W W W W W W W W W W W W W W W W W W W W W
+
+Legend:
+> - agent facing east
+? - unseen
+. - empty
+W - wall
+YD - yellow door (closed)
+ZD - grey door (closed)
+PD - purple door (closed)
+GD - green door (closed)
+
+Mission: open a door behind you
+LLM Response: Prediction(
+    reasoning="To accomplish the mission of opening a door behind the agent, we first need to identify the doors in the maze and their locations relative to the agent. The agent is currently facing east, as indicated by the '>' symbol. The doors in the maze are colored and their locations are as follows: a grey door (ZD) to the north, a yellow door (YD) and a purple door (PD) to the south, and a green door (GD) also to the south but further away. Since the mission is to open a door behind the agent, the agent needs to turn around to face the doors that are behind it. The closest door behind the agent would be the grey door (ZD) to the north. However, to open a door, the agent must first face it and then move towards it to be adjacent to it before attempting to open it. Given the agent's current orientation and position, the first step would be to turn around to face the direction of the doors behind it.",
+    primitive_action=0
+)
+==================================================
+
+Episode 10 (BabyAI-OpenDoor-v0):
+----------------------------------------
+ID: 15
+Environment: BabyAI-OpenDoor-v0
+Episode: 10, Step: 0
+Observation:
+Grid:
+W W W W W W W W W W W W W W W W W W W W W W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W W W W W W W W W W GD W W W W W W W W W W W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . BD . . . . . . W
+W . . . . . . ZD . < . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W W W W W W W W RD W W W W W W W W W W W W W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W W W W W W W W W W W W W W W W W W W W W W
+
+Legend:
+< - agent facing west
+? - unseen
+. - empty
+W - wall
+GD - green door (closed)
+BD - blue door (closed)
+ZD - grey door (closed)
+RD - red door (closed)
+
+Mission: open the blue door
+LLM Response: Prediction(
+    reasoning="To open the blue door, the agent first needs to navigate to it. The blue door (BD) is located at the bottom part of the grid, and the agent is currently facing west near the top part of the grid, above the green door (GD). Since the agent's position and the blue door's position are known, the next step is to move the agent towards the blue door. Given the grid layout and the agent's current direction, the most efficient way to start moving towards the blue door is to turn the agent around to face the opposite direction (east) and then move forward.",
+    primitive_action=1
+)
+==================================================
+
+ID: 16
+Environment: BabyAI-OpenDoor-v0
+Episode: 10, Step: 5
+Observation:
+Grid:
+W W W W W W W W W W W W W W W W W W W W W W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W W W W W W W W W W GD W W W W W W W W W W W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . BD . . . . . . W
+W . . . . . . ZD . . . . > . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W W W W W W W W RD W W W W W W W W W W W W W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W W W W W W W W W W W W W W W W W W W W W W
+
+Legend:
+> - agent facing east
+? - unseen
+. - empty
+W - wall
+GD - green door (closed)
+BD - blue door (closed)
+ZD - grey door (closed)
+RD - red door (closed)
+
+Mission: open the blue door
+LLM Response: Prediction(
+    reasoning='To open the blue door, the agent first needs to navigate to it. The blue door (BD) is located at the bottom part of the grid, and the agent is currently at the top part, facing east. The agent needs to move down to reach the blue door. Since the agent is facing east and there are walls to the east, the agent should turn and move in the direction that will lead it to the blue door.',
+    primitive_action=2
+)
+==================================================
+
+Episode 11 (BabyAI-OpenDoor-v0):
+----------------------------------------
+ID: 17
+Environment: BabyAI-OpenDoor-v0
+Episode: 11, Step: 0
+Observation:
+Grid:
+W W W W W W W W W W W W W W W W W W W W W W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W W W W W W W W W W W GD W W W W W W W W W W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . YD . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . RD . . . . . > W . . . . . . W
+W W W W W W W W W W BD W W W W W W W W W W W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W W W W W W W W W W W W W W W W W W W W W W
+
+Legend:
+> - agent facing east
+? - unseen
+. - empty
+W - wall
+YD - yellow door (closed)
+GD - green door (closed)
+BD - blue door (closed)
+RD - red door (closed)
+
+Mission: open a door behind you
+LLM Response: Prediction(
+    reasoning="To accomplish the mission of opening a door behind the agent, we first need to identify the doors in the maze and their relative positions to the agent. The agent is currently facing east, as indicated by the '>' symbol. Looking at the maze layout, there are four doors: a green door (GD) to the north, a yellow door (YD) to the south, a blue door (BD) to the south, and a red door (RD) to the west. Since the mission is to open a door behind the agent, and the agent is facing east, the door behind the agent would be to the west. Therefore, the agent needs to turn around to face the door behind it, which is the red door (RD), and then move towards it to open it.",
+    primitive_action=0
+)
+==================================================
+
+ID: 18
+Environment: BabyAI-OpenDoor-v0
+Episode: 11, Step: 5
+Observation:
+Grid:
+W W W W W W W W W W W W W W W W W W W W W W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W W W W W W W W W W W GD W W W W W W W W W W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . ^ YD . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . RD . . . . . . W . . . . . . W
+W W W W W W W W W W BD W W W W W W W W W W W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W W W W W W W W W W W W W W W W W W W W W W
+
+Legend:
+^ - agent facing north
+? - unseen
+. - empty
+W - wall
+YD - yellow door (closed)
+GD - green door (closed)
+BD - blue door (closed)
+RD - red door (closed)
+
+Mission: open a door behind you
+LLM Response: Prediction(
+    reasoning="The agent's mission is to open a door behind it. Given the current state of the maze, the agent is facing north and there are doors behind it (to the south). The agent needs to turn around to face the doors and then move towards them to open one. Since the agent is initially facing north, it should first turn around to face south. This can be achieved by turning right twice (or left twice), but the most straightforward approach would be to turn around directly if such an action were available. However, based on the provided actions (turn left, turn right, move forward, pick up, drop, toggle, done), the agent can turn around by turning right twice. Thus, the first step is to turn the agent around to face the doors.",
+    primitive_action=1
+)
+==================================================
+
+ID: 19
+Environment: BabyAI-OpenDoor-v0
+Episode: 11, Step: 10
+Observation:
+Grid:
+W W W W W W W W W W W W W W W W W W W W W W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W W W W W W W W W W W GD W W W W W W W W W W
+W . . . . . . W . . . ^ . . W . . . . . . W
+W . . . . . . W . . . . . . YD . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . RD . . . . . . W . . . . . . W
+W W W W W W W W W W BD W W W W W W W W W W W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W W W W W W W W W W W W W W W W W W W W W W
+
+Legend:
+^ - agent facing north
+? - unseen
+. - empty
+W - wall
+YD - yellow door (closed)
+GD - green door (closed)
+BD - blue door (closed)
+RD - red door (closed)
+
+Mission: open a door behind you
+LLM Response: Prediction(
+    reasoning="The agent's mission is to open a door behind it. Given the current state of the maze, the agent is facing north and there are doors behind it (to the south). To open a door, the agent first needs to turn around to face the doors, and then navigate to one of the doors. The agent's current position and orientation suggest that it should turn around to face south.",
+    primitive_action=1
+)
+==================================================
+
+Episode 12 (BabyAI-OpenDoor-v0):
+----------------------------------------
+ID: 20
+Environment: BabyAI-OpenDoor-v0
+Episode: 12, Step: 0
+Observation:
+Grid:
+W W W W W W W W W W W W W W W W W W W W W W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W W W W W W W W W W W PD W W W W W W W W W W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . GD . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . BD . . . . . . W
+W . . . . . . W . . . . > . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W W W W W W W W W W W RD W W W W W W W W W W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W . . . . . . W . . . . . . W . . . . . . W
+W W W W W W W W W W W W W W W W W W W W W W
+
+Legend:
+> - agent facing east
+? - unseen
+. - empty
+W - wall
+BD - blue door (closed)
+RD - red door (closed)
+PD - purple door (closed)
+GD - green door (closed)
+
+Mission: open the blue door
+LLM Response: Prediction(
+    reasoning='To open the blue door, the agent first needs to find the blue door and then find a way to open it. Since the blue door is closed, the agent needs to find the blue key to open it. However, the current state does not provide information about the location of the blue key. The agent is currently facing east and is not near the blue door. The first step would be to move towards the blue door. Since the agent is facing east and the blue door is to the south, the agent needs to turn and move in that direction.',
+    primitive_action=2
+)
+==================================================
+
+
+--- Starting BabyAI-PickupLoc-v0 (Target: 10 examples) ---
+
+Episode 13 (BabyAI-PickupLoc-v0):
+----------------------------------------
+ID: 21
+Environment: BabyAI-PickupLoc-v0
+Episode: 13, Step: 0
+Observation:
+Grid:
+W W W W W W W W
+W . . . . . . W
+W PB . . . . . W
+W . K . . . YB W
+W YB . . . . . W
+W . . . . BB RB W
+W > . BB GB . . W
+W W W W W W W W
+
+Legend:
+> - agent facing east
+? - unseen
+. - empty
+W - wall
+PB - purple box
+RB - red box
+YB - yellow ball
+BB - blue ball
+GB - green ball
+K - purple key
+
+Mission: pick up the green ball
+LLM Response: Prediction(
+    reasoning="To accomplish the mission of picking up the green ball, we first need to understand the current state of the maze and the agent's position. The agent is facing east, as indicated by the '>' symbol. The green ball (GB) is located to the east of the agent, but there are several steps and possibly obstacles between them. Since the agent's goal is to pick up the green ball, the most direct path involves moving towards it. However, we must also consider any obstacles or items that could either hinder or help the agent's progress, such as walls, boxes, or keys. Given the agent's current position and the location of the green ball, the immediate next step should be to move forward (east) towards the green ball, as there are no immediate obstacles directly in front of the agent that would prevent this movement.",
+    primitive_action=2
+)
+==================================================
+
+ID: 22
+Environment: BabyAI-PickupLoc-v0
+Episode: 13, Step: 5
+Observation:
+Grid:
+W W W W W W W W
+W . . . . . . W
+W PB . . . . . W
+W . K . . . YB W
+W YB . . . . . W
+W . . > . BB RB W
+W . . BB GB . . W
+W W W W W W W W
+
+Legend:
+> - agent facing east
+? - unseen
+. - empty
+W - wall
+PB - purple box
+RB - red box
+YB - yellow ball
+BB - blue ball
+GB - green ball
+K - purple key
+
+Mission: pick up the green ball
+LLM Response: Prediction(
+    reasoning="To accomplish the mission of picking up the green ball, we first need to understand the current state of the maze and the agent's position. The agent is facing east, as indicated by the '>' symbol. The green ball (GB) is located several steps away from the agent, and there are no obstacles directly between them that are mentioned, but the agent needs to navigate around the existing walls and other objects to reach it. Since the previous actions are N/A, this is the start of the episode, and the agent has not moved yet. The most direct path to the green ball involves moving forward (east) until the agent reaches the row where the green ball is located and then navigating to it.",
+    primitive_action=2
+)
+==================================================
+
+Episode 14 (BabyAI-PickupLoc-v0):
+----------------------------------------
+ID: 23
+Environment: BabyAI-PickupLoc-v0
+Episode: 14, Step: 0
+Observation:
+Grid:
+W W W W W W W W
+W . . K . . . W
+W . RB RB > . . W
+W . . . . . GB W
+W . . . . . GB W
+W GB BB . . . . W
+W PB . . . . . W
+W W W W W W W W
+
+Legend:
+> - agent facing east
+? - unseen
+. - empty
+W - wall
+BB - blue box
+RB - red ball, red box
+PB - purple box
+GB - green ball, green box
+K - green key
+
+Mission: pick up a box behind you
+LLM Response: Prediction(
+    reasoning="To accomplish the mission of picking up a box behind the agent, we first need to understand the current state of the environment and the agent's position. The agent is facing east, as indicated by the '>' symbol. Since the mission is to pick up a box behind the agent, the agent needs to turn around to face the boxes. The boxes are located behind the agent, so the first step would be to turn the agent around to face west. This can be achieved by turning left, as the agent is currently facing east.",
+    primitive_action=0
+)
+==================================================
+
+Episode 15 (BabyAI-PickupLoc-v0):
+----------------------------------------
+ID: 24
+Environment: BabyAI-PickupLoc-v0
+Episode: 15, Step: 0
+Observation:
+Grid:
+W W W W W W W W
+W . . v RB . ZK W
+W . GB . . . BB W
+W RK . PB . . . W
+W . . . . . GK W
+W . . . . . . W
+W . GB . . . . W
+W W W W W W W W
+
+Legend:
+v - agent facing south
+? - unseen
+. - empty
+W - wall
+GK - green key
+ZK - grey key
+RK - red key
+BB - blue ball
+GB - green ball
+PB - purple box
+RB - red box
+
+Mission: pick up the purple box
+LLM Response: Prediction(
+    reasoning="The agent's mission is to pick up the purple box. Given the current state of the maze, the agent is facing south and is located near the red box and the grey key. The purple box is located below the red key. To achieve the mission, the agent needs to move towards the purple box. Since the agent is currently facing south, it can move forward to get closer to the purple box. The next subgoal is to move forward.",
+    primitive_action=2
+)
+==================================================
+
+Episode 16 (BabyAI-PickupLoc-v0):
+----------------------------------------
+ID: 25
+Environment: BabyAI-PickupLoc-v0
+Episode: 16, Step: 0
+Observation:
+Grid:
+W W W W W W W W
+W GK . . . . BK W
+W . ZK . . O . W
+W . . . . . BB W
+W O . . . . . W
+W . . O v . . W
+W . . ZB . . . W
+W W W W W W W W
+
+Legend:
+v - agent facing south
+? - unseen
+. - empty
+W - wall
+BK - blue key
+ZK - grey key
+GK - green key
+O - red ball
+BB - blue box
+ZB - grey box
+
+Mission: pick up the grey box
+LLM Response: Prediction(
+    reasoning='To accomplish the mission of picking up the grey box, the agent first needs to navigate to the grey box. The current state of the environment shows the agent facing south, and the grey box (ZB) is located above and to the left of the agent. Since the agent is currently facing south, it needs to turn around to face north to start moving towards the grey box. The most direct path to the grey box involves moving forward (north) after turning to face that direction.',
+    primitive_action=1
+)
+==================================================
+
+Episode 17 (BabyAI-PickupLoc-v0):
+----------------------------------------
+ID: 26
+Environment: BabyAI-PickupLoc-v0
+Episode: 17, Step: 0
+Observation:
+Grid:
+W W W W W W W W
+W PB . PB . . . W
+W . BB . . . . W
+W . . PB . . . W
+W . . . . . BB W
+W . RB . . . K W
+W RB . . < . . W
+W W W W W W W W
+
+Legend:
+< - agent facing west
+? - unseen
+. - empty
+W - wall
+BB - blue ball, blue box
+PB - purple ball, purple box
+RB - red ball, red box
+K - grey key
+
+Mission: pick up the purple box
+LLM Response: Prediction(
+    reasoning="The agent's mission is to pick up the purple box. Given the current state of the maze, the agent is facing west and is located near a red ball and box, but the purple box is located elsewhere in the maze. The agent needs to navigate to the purple box first. Looking at the grid, the closest purple box to the agent is located two steps to the north and one step to the east of the agent's current position, but since the agent is facing west, it first needs to turn around to face the correct direction to move towards the purple box. The agent should turn right to face north.",
+    primitive_action=1
+)
+==================================================
+
+Episode 18 (BabyAI-PickupLoc-v0):
+----------------------------------------
+ID: 27
+Environment: BabyAI-PickupLoc-v0
+Episode: 18, Step: 0
+Observation:
+Grid:
+W W W W W W W W
+W . . . O BK . W
+W . ^ . BK . . W
+W GB . YB . . . W
+W . . . . . . W
+W YB PK . . . . W
+W . . . . . BK W
+W W W W W W W W
+
+Legend:
+^ - agent facing north
+? - unseen
+. - empty
+W - wall
+YB - yellow box
+GB - green box
+BK - blue key
+PK - purple key
+O - green ball
+
+Mission: pick up the purple key
+LLM Response: Prediction(
+    reasoning="The agent's mission is to pick up the purple key. Given the current state of the maze, the agent is facing north and the purple key (PK) is located below it, at a distance of 2 steps. There are no obstacles between the agent and the purple key. The agent should move forward to reach the purple key.",
+    primitive_action=2
+)
+==================================================
+
+Episode 19 (BabyAI-PickupLoc-v0):
+----------------------------------------
+ID: 28
+Environment: BabyAI-PickupLoc-v0
+Episode: 19, Step: 0
+Observation:
+Grid:
+W W W W W W W W
+W . . . . . PK W
+W . GB . YB BB PK W
+W GB . . v . . W
+W . PB . . . . W
+W . . . . . . W
+W YK . . . . . W
+W W W W W W W W
+
+Legend:
+v - agent facing south
+? - unseen
+. - empty
+W - wall
+PB - purple box
+GB - green box
+YK - yellow key
+PK - purple key
+YB - yellow ball
+BB - blue ball
+
+Mission: pick up the yellow ball
+LLM Response: Prediction(
+    reasoning="To accomplish the mission of picking up the yellow ball, we first need to understand the current state of the environment and the agent's position. The agent is currently facing south, as indicated by 'v'. The yellow ball (YB) is located two steps to the north and one step to the east of the agent's current position. However, to reach the yellow ball, the agent must navigate through the maze, avoiding walls and potentially interacting with other objects if necessary. Given that the agent's initial actions are not provided and the mission is to pick up the yellow ball, the most logical first step is to move towards the yellow ball. Since the agent is facing south and the yellow ball is to the north, the agent needs to turn around to face north and then move forward.",
+    primitive_action=1
+)
+==================================================
+
+Episode 20 (BabyAI-PickupLoc-v0):
+----------------------------------------
+ID: 29
+Environment: BabyAI-PickupLoc-v0
+Episode: 20, Step: 0
+Observation:
+Grid:
+W W W W W W W W
+W . . ZB ZK . YB W
+W . YK . . . . W
+W . BB . . . . W
+W PB . . . . . W
+W ZK . . . . ZK W
+W . . ^ . . . W
+W W W W W W W W
+
+Legend:
+^ - agent facing north
+? - unseen
+. - empty
+W - wall
+ZB - grey ball
+PB - purple ball
+YK - yellow key
+ZK - grey key
+YB - yellow box
+BB - blue box
+
+Mission: pick up a box
+LLM Response: Prediction(
+    reasoning="To solve this task, we first need to understand the mission, which is to pick up a box. Looking at the current state of the maze, we see there are two boxes: a yellow box (YB) and a blue box (BB). The agent is currently facing north, indicated by the '^' symbol. Since the mission is to pick up any box, we should first navigate towards the closest box. The closest box to the agent appears to be the blue box (BB), which is located a few steps to the south and then to the east of the agent's current position. However, to determine the exact sequence of actions, we need to consider the most direct path to the box while avoiding obstacles like walls (W) and potentially other objects that could interfere with our path.\n\nGiven that the agent starts with no previous actions, our first step should be to move towards the blue box. The agent needs to turn right to face east and then move forward to start heading in the general direction of the blue box. However, since the direct path involves navigating through the maze, we'll need to adjust our movements based on the layout of the maze, including turning and moving forward appropriately to reach the box.",
+    primitive_action=2
+)
+==================================================
+
+Episode 21 (BabyAI-PickupLoc-v0):
+----------------------------------------
+ID: 30
+Environment: BabyAI-PickupLoc-v0
+Episode: 21, Step: 0
+Observation:
+Grid:
+W W W W W W W W
+W . . . YK GB . W
+W ^ . . . . . W
+W RK BK . . BB . W
+W RB . . . . GB W
+W . . . . . . W
+W . . . YB . . W
+W W W W W W W W
+
+Legend:
+^ - agent facing north
+? - unseen
+. - empty
+W - wall
+YK - yellow key
+BK - blue key
+RK - red key
+GB - green ball, green box
+BB - blue ball
+RB - red ball
+YB - yellow box
+
+Mission: pick up a key behind you
+LLM Response: Prediction(
+    reasoning="The agent's mission is to pick up a key behind it. Given the current state of the maze, the agent is facing north and there are keys behind it. The agent needs to turn around to face the keys. Since the agent is initially facing north, it needs to turn around, which requires two turns (either two turns to the left or two turns to the right). The most straightforward approach would be to turn left twice or turn right twice.",
+    primitive_action=0
+)
+==================================================
+

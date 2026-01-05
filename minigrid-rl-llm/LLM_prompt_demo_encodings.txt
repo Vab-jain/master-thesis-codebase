@@ -1,0 +1,59 @@
+LLM Prompt Demo — All 4 Encoding Types (MiniGrid)
+
+Common task_description:
+You are a 2D maze-solving agent with access to a variety of low-level skills such as picking up or dropping objects, navigating to doors/keys/boxes, and opening/closing doors. You are also given the current state of the maze. Your task is to choose the single next subgoal to achieve, given: 1) The overall mission (e.g. “pick up the red key and open the blue door”) 2) A textual encoding of the current environment state, and 3) The previous actions taken by the agent in the current episode. Think step by step about the current state, the agent's position, and previous actions, and output the next subgoal.
+
+Demo mission (shared across encodings):
+open the door behind you
+
+Previous actions (demo):
+
+
+---
+Encoding: ASCII
+Field: current_state
+
+Grid:
+? ? D . . . .
+? ? W . . . .
+? ? W . . . .
+? ? W @ . . .
+? ? W . . . .
+? ? W D W W W
+? ? ? ? ? ? ?
+
+Legend:
+@ - agent
+? - unseen
+. - empty
+W - wall
+D - grey door (closed)
+
+Mission: open the door behind you
+
+
+---
+Encoding: RELATIVE
+Field: current_state
+
+There is a grey door (closed) 2 tile(s) behind. Mission: open the door behind you
+
+
+---
+Encoding: TUPLES
+Field: current_state
+
+Objects: [('red' door, state=closed, (2, 0)), ('grey' door, state=closed, (3, 5))]. Mission: open the door behind you
+
+
+---
+Encoding: NATURAL
+Field: current_state
+
+There is a red door (closed) at position (2,0). There is a grey door (closed) at position (3,5). Mission: open the door behind you
+
+
+Notes:
+- This file demonstrates the exact “current_state” text the LLM would receive for each encoding, alongside the shared task_description and demo mission.
+- The ASCII grid includes a legend and agent-facing indicator, consistent with the project’s encoder.
+
