@@ -1,0 +1,145 @@
+.DS_Store*
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+conda-meta/
+.conda/
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb_checkpoints/
+
+# Model Checkpoints and Large Files
+*.pt
+*.pth
+*.pkl
+*.h5
+*.hdf5
+*.ckpt
+*.weights
+*.model
+*.pb
+*.onnx
+*.tflite
+
+# Experiment Results (large directories - uncomment if you want to ignore all results)
+# runs/
+# experiments_results/
+# RL_Training_Results_*/
+# storage/
+
+# Logs and Temporary Files
+*.log
+*.tmp
+*.temp
+logs/
+*.out
+*.err
+
+# Data files (uncomment if datasets are large)
+# *.csv
+# *.json
+# *.parquet
+# *.feather
+# data/
+# datasets/
+
+# Plot outputs (uncomment if you want to ignore generated plots)
+# *.png
+# *.jpg
+# *.jpeg
+# *.pdf
+# *.svg
+# figures/
+# plots/
+
+# OS Files
+Thumbs.db
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+
+# Environment Variables
+.env
+.env.local
+.env.*.local
+
+# Coverage Reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# MyPy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre
+.pyre/
+
+# TensorBoard
+runs/
+tensorboard/
+*.tfevents.*
+
+# Weights & Biases
+wandb/
+
+# MLflow
+mlruns/
+
+# Temporary Python files
+*.pyc
+*.pyo
+*.pyd
