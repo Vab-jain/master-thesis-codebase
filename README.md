@@ -1,4 +1,4 @@
-# Master Thesis Codebase
+# Leveraging LLMs for Guiding Exploration in Reinforcement Learning
 
 This repository contains the complete codebase for the master's thesis research on integrating Large Language Models (LLMs) with Reinforcement Learning (RL) agents across multiple game environments. The research explores how LLM-generated hints can improve RL agent training efficiency and performance.
 
