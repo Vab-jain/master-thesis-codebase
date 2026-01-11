@@ -61,33 +61,7 @@ pip install -r requirements.txt
 
 ## 📚 Project Details
 
-### 1. Deal or No Deal (`deal_or_no_deal/`)
-
-A Gym-compatible environment for the Deal or No Deal negotiation task, implementing multi-issue bargaining with coarse dialogue acts. The project includes:
-
-- **Environment**: Custom Gymnasium environment for negotiation scenarios
-- **Algorithms**: PPO and REINFORCE implementations
-- **LLM Integration**: Hint injection system using LLM-generated guidance
-- **Evaluation**: Comprehensive metrics and policy evaluation tools
-
-**Key Features:**
-- Multi-issue negotiation over 3 item types (books, hats, balls)
-- Coarse dialogue acts: propose, insist, agree, disagree, end
-- Support for LLM-generated hints during training
-- Supervised expert training baseline
-
-**Quick Start:**
-```bash
-cd deal_or_no_deal
-conda activate rl  # As per project setup
-python train/train.py --config configs/ppo_config.yaml
-```
-
-**Documentation:**
-- Environment details: `deal_or_no_deal/deal_or_no_deal_env/README.md`
-- Dialog system: `deal_or_no_deal/deal_or_no_dialog/README.md`
-
-### 2. Minigrid-RL-LLM (`minigrid-rl-llm/`)
+### 1. Minigrid-RL-LLM (`minigrid-rl-llm/`)
 
 A comprehensive research pipeline for studying LLM-RL integration in BabyAI/Minigrid environments. The project is organized into sequential modules:
 
@@ -118,7 +92,7 @@ cd ../2_LLM_optimization && python main_llm_optimization.py
 - Main README: `minigrid-rl-llm/README.md`
 - Module-specific READMEs in each numbered directory
 
-### 3. Tic-Tac-Toe RL-LLM (`tictactoe_rl_llm/`)
+### 2. Tic-Tac-Toe RL-LLM (`tictactoe_rl_llm/`)
 
 A simplified grid-based game environment exploring LLM-guided RL training with various configurations:
 
@@ -138,6 +112,32 @@ python run_RL_experiments.py
 # Run LLM experiments
 python run_LLM_experiment.py
 ```
+
+### 3. Deal or No Deal (`deal_or_no_deal/`)
+
+A Gym-compatible environment for the Deal or No Deal negotiation task, implementing multi-issue bargaining with coarse dialogue acts. The project includes:
+
+- **Environment**: Custom Gymnasium environment for negotiation scenarios
+- **Algorithms**: PPO and REINFORCE implementations
+- **LLM Integration**: Hint injection system using LLM-generated guidance
+- **Evaluation**: Comprehensive metrics and policy evaluation tools
+
+**Key Features:**
+- Multi-issue negotiation over 3 item types (books, hats, balls)
+- Coarse dialogue acts: propose, insist, agree, disagree, end
+- Support for LLM-generated hints during training
+- Supervised expert training baseline
+
+**Quick Start:**
+```bash
+cd deal_or_no_deal
+conda activate rl  # As per project setup
+python train/train.py --config configs/ppo_config.yaml
+```
+
+**Documentation:**
+- Environment details: `deal_or_no_deal/deal_or_no_deal_env/README.md`
+- Dialog system: `deal_or_no_deal/deal_or_no_dialog/README.md`
 
 ## 🔬 Research Methodology
 
@@ -175,7 +175,7 @@ While each project has specific requirements, common dependencies include:
 
 - **Thesis**: [Full thesis PDF](./thesis.pdf)
 
-- **Integrating Large Language Models with RL Agents: Best Practices and Benchmarks.** [arXiv:2510.08779](https://arxiv.org/abs/2510.08779)
+- **Workshop paper** [arXiv:2510.08779](https://arxiv.org/abs/2510.08779)
 
 ## 👤 Author
 
