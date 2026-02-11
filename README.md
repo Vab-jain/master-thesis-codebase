@@ -6,12 +6,20 @@ This repository contains the complete codebase for the master's thesis research 
 
 This thesis investigates how Large Language Models (LLMs) can guide exploration in Reinforcement Learning (RL) without imposing hard constraints on agent decision-making. We hypothesize that LLMs encode broad world knowledge and commonsense procedural regularities that, when elicited via prompting, can bias exploration while preserving policy autonomy. To investigate this, we propose a soft-constraint integration wherein LLM-generated suggestions are provided as structured hints within the agent’s observation, accompanied by a hint-availability flag. This design preserves the original Markov Decision Process (MDP), leaves the learning objective unchanged, and allows the agent's policy to learn when to use or ignore guidance.
 
+<div align="center">
+    <img src="./docs/our_approach_overview.png" alt="Overview of our appraoch" width="90%">
+</div>
+
 Methodologically, we develop a prompting and encoding pipeline to translate compact state summaries into schema-constrained outputs that can be consumed by standard RL policies. The approach is algorithm-agnostic; we instantiate it with Proximal Policy Optimization (PPO) and evaluate across domains of varying structure and difficulty: Minigrid, TicTacToe, and Deal or No Deal. Supplementary experiments with DQN and REINFORCE are also provided.
 
 Empirical results demonstrate that hints elicited via structure-preserving prompts—augmented with chain-of-thought reasoning where appropriate—are reliable and context-relevant. In Minigrid, integrating LLM hints as soft inputs yields improved sample efficiency and, on more difficult tasks, better final performance relative to tabula-rasa baselines, while remaining below an oracle upper bound. In compact domains such as TicTacToe and Deal or No Deal, the prompting pipeline produces interpretable, valid suggestions (e.g., higher action validity under masking and approximately 85% agreement with curated data in Deal or No Deal), though overall training gains are bounded by the short horizon and small state spaces. In all settings, RL agents learn to discount suboptimal hints, showcasing robustness to imperfect guidance.
 
 We discuss key limitations, particularly the computational overhead of frequent LLM queries, and outline cost-aware extensions—including adaptive hint scheduling, distillation, and lightweight serving. Overall, our results support LLM-guided hints as a practical and robust mechanism for accelerating learning in sufficiently complex RL tasks while preserving agent autonomy.
 
+
+<div align="center">
+    <img src="./docs/rl-llm-arch_diag.png" alt="Architecture Diagram" width="90%">
+</div>
 
 ## 📁 Repository Structure
 
