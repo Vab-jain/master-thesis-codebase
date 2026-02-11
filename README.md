@@ -16,10 +16,28 @@ Empirical results demonstrate that hints elicited via structure-preserving promp
 
 We discuss key limitations, particularly the computational overhead of frequent LLM queries, and outline cost-aware extensions—including adaptive hint scheduling, distillation, and lightweight serving. Overall, our results support LLM-guided hints as a practical and robust mechanism for accelerating learning in sufficiently complex RL tasks while preserving agent autonomy.
 
+## 🎯 Overview
+
+This codebase contains the implementation of a unified research thesis that investigates the integration of LLMs with RL agents, applying the same methodology across three different environments:
+
+1. **Deal or No Deal**: Multi-issue bargaining negotiation environment with RL agents trained using PPO and REINFORCE algorithms, enhanced with LLM-generated hints.
+
+2. **Minigrid-RL-LLM**: Comprehensive research pipeline for BabyAI/Minigrid environments, including ground truth data collection, LLM optimization, evaluation, RL training, and agent comparison.
+
+3. **Tic-Tac-Toe RL-LLM**: Simple grid-based game environment exploring LLM-guided RL training with various prompting strategies and board representations.
 
 <div align="center">
-    <img src="./docs/rl-llm-arch_diag.png" alt="Architecture Diagram" width="90%">
+    <img src="./docs/rl-llm-arch_diag.png" alt="Architecture Diagram" width="70%">
 </div>
+
+### Methodology
+
+All three projects follow a similar research methodology:
+
+1. **Baseline Establishment**: Train RL agents without LLM assistance
+2. **LLM Integration**: Incorporate LLM-generated hints/guidance during training
+3. **Evaluation**: Compare sample efficiency and final performance
+4. **Analysis**: Statistical analysis and visualization of results
 
 ## 📁 Repository Structure
 
@@ -30,16 +48,6 @@ master-thesis-codebase/
 ├── tictactoe_rl_llm/         # Tic-Tac-Toe game RL-LLM integration
 └── thesis.pdf                # Complete thesis document
 ```
-
-## 🎯 Overview
-
-This codebase contains the implementation of a unified research thesis that investigates the integration of LLMs with RL agents, applying the same methodology across three different environments:
-
-1. **Deal or No Deal**: Multi-issue bargaining negotiation environment with RL agents trained using PPO and REINFORCE algorithms, enhanced with LLM-generated hints.
-
-2. **Minigrid-RL-LLM**: Comprehensive research pipeline for BabyAI/Minigrid environments, including ground truth data collection, LLM optimization, evaluation, RL training, and agent comparison.
-
-3. **Tic-Tac-Toe RL-LLM**: Simple grid-based game environment exploring LLM-guided RL training with various prompting strategies and board representations.
 
 ## 🚀 Quick Start
 
@@ -146,15 +154,6 @@ python train/train.py --config configs/ppo_config.yaml
 **Documentation:**
 - Environment details: `deal_or_no_deal/deal_or_no_deal_env/README.md`
 - Dialog system: `deal_or_no_deal/deal_or_no_dialog/README.md`
-
-## 🔬 Research Methodology
-
-All three projects follow a similar research methodology:
-
-1. **Baseline Establishment**: Train RL agents without LLM assistance
-2. **LLM Integration**: Incorporate LLM-generated hints/guidance during training
-3. **Evaluation**: Compare sample efficiency and final performance
-4. **Analysis**: Statistical analysis and visualization of results
 
 ## 📊 Results and Outputs
 
